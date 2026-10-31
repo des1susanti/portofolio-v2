@@ -101,30 +101,6 @@ lalu buka http://localhost:8000 di browser.
 
 Komputer terasa berat? Buka dengan `index.html?ringan` (tanpa bayangan dan lampu malam).
 
-## Mode pemilik (hanya Desi yang bisa edit)
-
-Pengunjung cukup klik **MULAI**: mereka bisa melihat, berkeliling, memancing, membaca buku, menggerakkan robot,
-dan mengganti warna robot — tanpa bisa mengubah apa pun. Pemilik masuk lewat **roda gigi ⚙ samar di pojok kiri atas**
-(ada di Kampus 3D dan mode biasa) dengan **email + kata sandi**.
-
-**Cara kerjanya (aman untuk situs statis):** kata sandi tidak disimpan di mana pun. Yang disimpan di `data/akses.json`
-hanyalah kunci GitHub (token) yang **dikunci** (AES-256-GCM) memakai email + kata sandi (PBKDF2 600.000 putaran),
-plus sidik jari email. Saat login benar, kunci GitHub terbuka di browser itu dan tombol edit muncul.
-Token hanya boleh menulis ke repo `portofolio-v2`, jadi kalau terjadi apa-apa pun, akun GitHub lain aman dan setiap
-perubahan bisa dibatalkan dari riwayat commit.
-
-**Pengaturan awal (sekali saja):**
-1. Buat token: GitHub → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-   *Repository access*: **Only select repositories → `portofolio-v2`**. *Permissions → Contents*: **Read and write**.
-   Masa berlaku mis. 1 tahun. Salin token (`github_pat_…`), jangan dibagikan.
-2. Di situs: klik ⚙ → buka **"Masuk dengan token GitHub (pengaturan awal)"** → tempel token → Masuk.
-3. Klik ⚙ lagi → **Akun login (email & kata sandi)** → isi email + kata sandi → **Simpan akun**. Ulangi untuk email kedua.
-4. Selesai. Sekitar 1 menit kemudian, login cukup dengan email + kata sandi dari perangkat mana pun.
-
-Ganti kata sandi: masuk → ⚙ → isi email yang sama + kata sandi baru → Simpan akun.
-Token kedaluwarsa: buat token baru → masuk dengan token → simpan ulang kedua akun.
-Gunakan kata sandi panjang yang **berbeda** dari kata sandi email/Gmail.
-
 ## Menerbitkan dengan GitHub Pages (gratis)
 
 1. Unggah folder ini ke repo baru bernama `portofolio-v2` (kalau namanya lain, ubah `CONFIG` di `js/content.js`).
