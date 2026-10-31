@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "rlAwwfdsknVC6o+qn7FWLEq6C5gk70y1W2ZDA5BUrhg=",
+    "salt": "H64R1H2H1lPNUB5U3ig7Pw==",
+    "iv": "RjLkOnj0SSNr8n3X",
+    "ct": "Qp9r4+NCOZCCi6wazIzm2klcWVALk3I+82amocFpGoqvgJ4Gp+y5yNUYjULoRNeLpLozvK6wSaV2Vr08WeZ7nT3juGEbRMi7AAp+ksdpktOXCmWaOxDSAsfVNtZCC3rgRm5lLAiCvQZmKD2wSg==",
+    "iter": 600000,
+    "dibuat": "2026-10-31"
+  }
+]
