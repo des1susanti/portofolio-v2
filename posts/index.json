@@ -1,0 +1,224 @@
+[
+  {
+    "cat": "kode",
+    "date": "2026-10-31",
+    "file": "kode/robot-gestur.md",
+    "cover": "img/proyek/robot.jpg",
+    "title": {
+      "id": "Robot Gestur: Menjadi Dalang dengan Ujung Jari",
+      "en": "Gesture Robot: Puppeteering with Your Fingertips"
+    },
+    "summary": {
+      "id": "Robot marionet dengan benang emas dari setiap jari.",
+      "en": "A marionette robot with golden strings from every finger."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-31",
+    "file": "kode/simulator-mesin-3d.md",
+    "cover": "img/proyek/mesin3d.jpg",
+    "title": {
+      "id": "Simulator Mesin 3D: Membongkar Mobil dengan Dua Tangan",
+      "en": "3D Engine Simulator: Taking a Car Apart with Two Hands"
+    },
+    "summary": {
+      "id": "Mobil dari titik cahaya yang bisa dibongkar, dicubit, dan dirakit.",
+      "en": "A car of glowing points you can explode, pinch and rebuild."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-31",
+    "file": "kode/membuat-kampus-mini.md",
+    "title": {
+      "id": "Membuat Kampus Mini 3D dengan Three.js",
+      "en": "Building a 3D Mini Campus with Three.js"
+    },
+    "summary": {
+      "id": "Catatan di balik pembuatan portofolio ini.",
+      "en": "Notes behind building this portfolio."
+    },
+    "cover": "img/preview-kampus.png"
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-31",
+    "file": "kode/kampus-mini-3d.md",
+    "cover": "img/proyek/kampus3d.jpg",
+    "title": {
+      "id": "Kampus Mini 3D: Portofolio yang Bisa Dijelajahi",
+      "en": "Kampus Mini 3D: An Explorable Portfolio"
+    },
+    "summary": {
+      "id": "Portofolio v2: robot kecil berkeliling kampus 3D, dibuat dengan Three.js.",
+      "en": "Portfolio v2: a little robot roams a 3D campus, built with Three.js."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-30",
+    "file": "kode/mitologi-nusantara-gestur.md",
+    "cover": "img/proyek/mitologi.jpg",
+    "title": {
+      "id": "Mitologi Nusantara: Tokoh Legenda dari Gerakan Tangan",
+      "en": "Mitologi Nusantara: Legends Summoned by Hand Gestures"
+    },
+    "summary": {
+      "id": "Memanggil Garuda dan Naga dengan webcam, OpenCV, dan MediaPipe.",
+      "en": "Summoning Garuda and the Dragon with a webcam, OpenCV and MediaPipe."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-29",
+    "file": "kode/pohon-mangga-turtle.md",
+    "cover": "img/proyek/pohon.jpg",
+    "title": {
+      "id": "Pohon Mangga dengan Python Turtle",
+      "en": "A Mango Tree with Python Turtle"
+    },
+    "summary": {
+      "id": "Animasi menanam sampai berbuah, dan tips agar turtle tetap lancar.",
+      "en": "From planting to fruit, plus tips to keep turtle smooth."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-29",
+    "file": "kode/life-design-quest.md",
+    "cover": "img/proyek/lifedesign.jpg",
+    "title": {
+      "id": "Life Design Quest: Game untuk Merancang Karier",
+      "en": "Life Design Quest: A Game for Designing Your Career"
+    },
+    "summary": {
+      "id": "Enam level berbasis buku Designing Your Life, skor live di proyektor.",
+      "en": "Six levels based on Designing Your Life, with live scores on the projector."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-28",
+    "file": "kode/nebula-hands.md",
+    "cover": "img/proyek/nebula.jpg",
+    "title": {
+      "id": "Nebula Hands: Partikel 3D yang Menari Mengikuti Jari",
+      "en": "Nebula Hands: 3D Particles that Dance with Your Fingers"
+    },
+    "summary": {
+      "id": "Sepuluh gestur, sepuluh bentuk partikel: otak, hati, planet, lubang hitam.",
+      "en": "Ten gestures, ten particle shapes: brain, heart, planet, black hole."
+    }
+  },
+  {
+    "cat": "kuliner",
+    "date": "2026-10-25",
+    "file": "kuliner/contoh-kuliner.md",
+    "title": {
+      "id": "Contoh: Kuliner Favorit di Lampung",
+      "en": "Example: Favourite Food in Lampung"
+    },
+    "summary": {
+      "id": "Contoh tulisan kuliner (ganti dengan tulisanmu).",
+      "en": "Sample food post (replace with your own)."
+    }
+  },
+  {
+    "cat": "jalan-jalan",
+    "date": "2026-10-22",
+    "file": "jalan-jalan/contoh-perjalanan.md",
+    "title": {
+      "id": "Contoh: Akhir Pekan di Menara Siger",
+      "en": "Example: A Weekend at Siger Tower"
+    },
+    "summary": {
+      "id": "Contoh catatan perjalanan (ganti dengan tulisanmu).",
+      "en": "Sample travel note (replace with your own)."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-10-10",
+    "file": "kode/ftth-self-reporting.md",
+    "cover": "img/proyek/ftth.jpg",
+    "title": {
+      "id": "FTTH Self-Reporting: Lapor Gangguan Internet Sendiri",
+      "en": "FTTH Self-Reporting: Report Internet Outages Yourself"
+    },
+    "summary": {
+      "id": "Laravel 11 dengan empat peran: pelanggan, teknisi, admin, manager.",
+      "en": "Laravel 11 with four roles: customer, technician, admin, manager."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-09-24",
+    "file": "kode/mail-merge-quiz.md",
+    "cover": "img/proyek/mailmerge.jpg",
+    "title": {
+      "id": "Office Hacks: Belajar Mail Merge Lewat Kuis",
+      "en": "Office Hacks: Learning Mail Merge through a Quiz"
+    },
+    "summary": {
+      "id": "Aplikasi SPA edukatif untuk mahasiswa Akuntansi & Manajemen.",
+      "en": "An educational SPA for Accounting & Management students."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-09-23",
+    "file": "kode/etl-sap-icrm.md",
+    "cover": "img/proyek/etl.jpg",
+    "title": {
+      "id": "ETL SAP ↔ iCRM+: Rekonsiliasi Data Gudang Otomatis",
+      "en": "ETL SAP ↔ iCRM+: Automated Warehouse Reconciliation"
+    },
+    "summary": {
+      "id": "Sinkronisasi dan pencocokan stok otomatis, laporan siap audit.",
+      "en": "Automatic stock sync and matching with audit-ready reports."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-04-08",
+    "file": "kode/ai-vision-interaction.md",
+    "cover": "img/proyek/aivision.jpg",
+    "title": {
+      "id": "AI Vision: Menggambar di Udara & Deteksi Objek",
+      "en": "AI Vision: Air Drawing & Object Detection"
+    },
+    "summary": {
+      "id": "Virtual Paint dengan MediaPipe dan YOLOv8 dengan logika tambahan.",
+      "en": "Virtual Paint with MediaPipe and YOLOv8 with extra logic."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-03-09",
+    "file": "kode/luwing-game.md",
+    "cover": "img/proyek/luwing.jpg",
+    "title": {
+      "id": "Luwing Game: Belajar Game Loop dengan Seekor Ulat",
+      "en": "Luwing Game: Learning the Game Loop with a Caterpillar"
+    },
+    "summary": {
+      "id": "Game Pygame: makan apel, hindari bom, naik level.",
+      "en": "A Pygame game: eat apples, dodge bombs, level up."
+    }
+  },
+  {
+    "cat": "kode",
+    "date": "2026-03-08",
+    "file": "kode/portofolio-v1.md",
+    "cover": "img/v1/dsi.jpg",
+    "title": {
+      "id": "Portofolio v1: Flask + Tailwind CSS",
+      "en": "Portfolio v1: Flask + Tailwind CSS"
+    },
+    "summary": {
+      "id": "Versi pertama situs ini sebelum menjadi Kampus Mini 3D.",
+      "en": "The first version of this site before the 3D Mini Campus."
+    }
+  }
+]

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tulis Blog — Kampus Mini</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #241726; --wood: #c9703f; --card: #fff8ef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Nunito, Arial, sans-serif; background: #2a1a24; color: var(--ink); min-height: 100vh; }
+    header { padding: 18px 24px; display: flex; align-items: center; gap: 16px; color: #fff3ea;
+      background: repeating-linear-gradient(0deg, #c9703f 0 22px, #b8623a 22px 24px); box-shadow: 0 6px 0 #8a4528; }
+    header h1 { margin: 0; font-family: "Amatic SC", cursive; font-size: 40px; letter-spacing: 1px; flex: 1; }
+    header a { color: #fff; font-weight: 700; }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 18px; max-width: 1400px; margin: 0 auto; }
+    .pane { background: var(--card); border-radius: 14px; padding: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+    label { display: block; font-weight: 900; font-size: 13px; letter-spacing: .5px; margin: 10px 0 4px; color: #7a2232; }
+    input, select, textarea { width: 100%; padding: 10px 12px; border: 2px solid #ecd8c6; border-radius: 10px; font: inherit; background: #fff; }
+    textarea { min-height: 380px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; line-height: 1.55; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tools button { border: 0; background: #f0dccb; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .actions button { border: 0; padding: 11px 16px; border-radius: 10px; font-weight: 900; cursor: pointer; color: #fff; }
+    .b1 { background: #2ecc71; } .b2 { background: #9b59d0; } .b3 { background: #2f80ed; } .b4 { background: #e2574c; }
+    .preview { background: #170d12; color: #f6e9f0; border-radius: 10px; padding: 18px 22px; min-height: 520px; line-height: 1.65;
+      border: 6px solid #6d3a24; overflow: auto; }
+    .preview h1, .preview h2 { font-family: "Amatic SC", cursive; font-size: 40px; color: #ffd6a8; margin: .2em 0; }
+    .preview h3 { color: #ffd6a8; } .preview a { color: #ffb2e0; } .preview img { max-width: 100%; border-radius: 8px; }
+    .preview code, .preview pre { background: #2c2030; color: #ffd6f0; border-radius: 6px; } .preview code { padding: 1px 5px; } .preview pre { padding: 12px; overflow: auto; }
+    .preview blockquote { border-left: 4px solid #f1b434; margin: 8px 0; padding: 8px 14px; background: rgba(255,255,255,.06); }
+    .preview table { border-collapse: collapse; } .preview td, .preview th { border: 1px solid #555; padding: 4px 8px; }
+    .drafts { margin-top: 14px; } .drafts div { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border: 2px solid #ecd8c6; border-radius: 10px; margin: 6px 0; }
+    .drafts button { border: 0; background: #f0dccb; border-radius: 6px; padding: 4px 8px; cursor: pointer; margin-left: 4px; }
+    .help { font-size: 13.5px; color: #6c5a63; background: #fbefd9; border-radius: 10px; padding: 10px 14px; margin-top: 14px; line-height: 1.6; }
+    .help code { background: #fff; padding: 0 4px; border-radius: 4px; }
+    .ok { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #241726; color: #fff; padding: 10px 18px; border-radius: 30px; opacity: 0; transition: .3s; }
+    .ok.show { opacity: 1; }
+    header .exit { border: 0; background: #241726; color: #fff; padding: 10px 16px; border-radius: 10px; font: inherit; font-weight: 900; cursor: pointer; }
+    .row2 { display: flex; gap: 8px; } .row2 input { flex: 1; }
+    .up { display: inline-flex; align-items: center; gap: 6px; background: #9b59d0; color: #fff; padding: 10px 14px; border-radius: 10px; cursor: pointer;
+      font-weight: 900; font-size: 13px; letter-spacing: 0; margin: 0; white-space: nowrap; }
+    .up.small { background: #f0dccb; color: #241726; padding: 6px 10px; border-radius: 8px; font-size: 13px; }
+    .coverprev { max-width: 220px; border-radius: 10px; margin-top: 8px; display: none; }
+    .chk { display: flex; gap: 8px; align-items: center; color: #241726; font-weight: 700; margin-top: 14px; }
+    .chk input { width: auto; }
+    .lock h2 { margin-top: 0; }
+    button:disabled { opacity: .6; cursor: wait; }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header><h1>✍️ Meja Tulis Blog</h1><button class="exit" id="exit">✕ Keluar (tidak jadi menulis)</button></header>
+  <div class="lock" id="lock">
+    <div class="pane" style="max-width:520px;margin:60px auto;text-align:center">
+      <h2>🔒 Khusus pemilik</h2>
+      <p>Halaman ini hanya untuk pemilik situs. Pengunjung bisa membaca blog di Kampus 3D atau mode biasa.</p>
+      <div class="actions" style="justify-content:center"><button class="b2" id="login">⚙ Masuk</button><button class="b4" id="back">← Kembali</button></div>
+    </div>
+  </div>
+  <main id="editor" style="display:none">
+    <section class="pane">
+      <div class="row">
+        <div><label>KATEGORI</label>
+          <select id="cat"><option value="kode">💻 Kode (Perpustakaan)</option><option value="kuliner">🍜 Kuliner (Kantin)</option><option value="jalan-jalan">🧳 Jalan-jalan (Terminal)</option></select></div>
+        <div><label>TANGGAL</label><input id="date" type="date"></div>
+      </div>
+      <label>JUDUL</label><input id="title" placeholder="Judul tulisan">
+      <label>RINGKASAN (1 kalimat)</label><input id="summary" placeholder="Muncul di daftar tulisan">
+      <label>GAMBAR SAMPUL (opsional)</label>
+      <div class="row2"><input id="cover" placeholder="img/…"><label class="up">📷 Unggah sampul<input type="file" accept="image/*" id="upCover" hidden></label></div>
+      <img id="coverPrev" class="coverprev" alt="">
+      <label>ISI (format Markdown)</label>
+      <div class="tools">
+        <button data-w="**" title="Tebal"><b>B</b></button><button data-w="*" title="Miring"><i>I</i></button>
+        <button data-l="## ">Judul</button><button data-l="- ">• Daftar</button><button data-l="> ">“ Kutipan</button>
+        <button data-b="```\n\n```">&lt;/&gt; Kode</button><button data-b="[teks](https://)">🔗 Tautan</button><label class="up small">🖼 Unggah foto ke isi<input type="file" accept="image/*" id="upBody" hidden></label>
+      </div>
+      <textarea id="body" placeholder="# Judul&#10;&#10;Mulai menulis di sini…"></textarea>
+      <label class="chk"><input type="checkbox" id="draft"> Simpan sebagai draf (belum tampil untuk pengunjung)</label>
+      <div class="actions">
+        <button class="b1" id="save">🚀 Terbitkan / Simpan</button>
+        <button class="b4" id="del" style="display:none">🗑 Hapus tulisan</button>
+        <button class="b3" id="new">＋ Tulisan baru</button>
+      </div>
+      <div class="drafts" id="drafts"></div>
+      <div class="help">
+        Tulisan & foto disimpan langsung ke GitHub (<code><span id="repo"></span></code>). Situs untuk pengunjung diperbarui ±1 menit setelah disimpan.
+        Kategori <b id="catname">kode</b> tampil di gedung <span id="catplace"></span>.
+      </div>
+    </section>
+    <section class="pane"><label>PRATINJAU</label><div class="preview" id="preview"></div></section>
+  </main>
+  <div class="ok" id="ok"></div>
+  <script type="module">
+    import { md } from './js/markdown.js';
+    import * as admin from './js/admin.js';
+    import { CONFIG } from './js/content.js';
+    admin.injectOwnerCSS(); admin.applyOwnerClass();
+    const $ = (s) => document.getElementById(s);
+    const PLACE = { kode: 'Perpustakaan', kuliner: 'Kantin', 'jalan-jalan': 'Terminal Bus' };
+    const params = new URLSearchParams(location.search);
+    let editing = null;   // file lama yang sedang diedit
+    let dirty = false;
+    const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'tulisan';
+    const toast = (m, ms = 2600) => { $('ok').textContent = m; $('ok').classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => $('ok').classList.remove('show'), ms); };
+    const render = () => {
+      $('preview').innerHTML = md($('body').value || '*Pratinjau muncul di sini.*');
+      $('catname').textContent = $('cat').value; $('catplace').textContent = PLACE[$('cat').value];
+      const c = $('cover').value.trim(); $('coverPrev').src = c; $('coverPrev').style.display = c ? 'block' : 'none';
+    };
+    const leave = () => {
+      if (dirty && !confirm('Tulisan belum disimpan. Tetap keluar?')) return;
+      dirty = false;
+      if (history.length > 1) history.back(); else location.href = 'index.html';
+    };
+    $('exit').onclick = leave; $('back').onclick = () => (location.href = 'index.html');
+    $('login').onclick = () => admin.loginDialog((ok) => ok && location.reload());
+    addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+    async function listPosts() {
+      const list = await admin.loadPosts();
+      $('drafts').innerHTML = '<label>SEMUA TULISAN</label>' + list.map((x) =>
+        `<div><span><b>${x.title.id}</b> · ${x.cat} · ${x.date}${x.draft ? ' · <i>draf</i>' : ''}</span><span><button data-open="${x.file}">✎ Edit</button><button data-del="${x.file}">🗑 Hapus</button></span></div>`).join('');
+      $('drafts').querySelectorAll('[data-open]').forEach((b) => (b.onclick = () => openPost(b.dataset.open)));
+      $('drafts').querySelectorAll('[data-del]').forEach((b) => (b.onclick = () => del(b.dataset.del)));
+    }
+    async function openPost(file) {
+      const list = await admin.loadPosts();
+      const x = list.find((y) => y.file === file);
+      if (!x) { toast('Tulisan tidak ditemukan'); return; }
+      editing = x.file;
+      $('cat').value = x.cat; $('date').value = x.date; $('title').value = x.title.id; $('summary').value = (x.summary && x.summary.id) || '';
+      $('cover').value = x.cover || ''; $('draft').checked = !!x.draft;
+      $('body').value = (await admin.readText('posts/' + x.file)) || '';
+      $('del').style.display = ''; dirty = false; render();
+      scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    async function del(file) {
+      if (!confirm('Hapus tulisan ini dari situs?')) return;
+      try { await admin.removePost(file); toast('Tulisan dihapus ✓'); if (editing === file) fresh(); listPosts(); }
+      catch (e) { toast(e.message, 5000); }
+    }
+    function fresh() {
+      editing = null; ['title', 'summary', 'cover', 'body'].forEach((id) => ($(id).value = ''));
+      $('draft').checked = false; $('del').style.display = 'none'; $('date').value = new Date().toISOString().slice(0, 10); dirty = false; render();
+    }
+    $('new').onclick = () => { if (!dirty || confirm('Buang perubahan yang belum disimpan?')) fresh(); };
+    $('del').onclick = () => editing && del(editing);
+    $('save').onclick = async () => {
+      const title = $('title').value.trim();
+      if (!title) { toast('Isi judul dulu'); return; }
+      const cat = $('cat').value;
+      const file = editing && editing.startsWith(cat + '/') ? editing : `${cat}/${slug(title)}.md`;
+      const entry = { cat, date: $('date').value, file, title: { id: title, en: title }, summary: { id: $('summary').value, en: $('summary').value } };
+      if ($('cover').value.trim()) entry.cover = $('cover').value.trim();
+      if ($('draft').checked) entry.draft = true;
+      $('save').disabled = true; $('save').textContent = 'Menyimpan…';
+      try {
+        await admin.savePost(entry, $('body').value, editing);
+        editing = file; dirty = false; $('del').style.display = '';
+        toast($('draft').checked ? 'Draf tersimpan ✓ (hanya terlihat oleh pemilik)' : 'Terbit ✓ — tampil untuk pengunjung ±1 menit lagi', 4000);
+        listPosts();
+      } catch (e) { toast(e.message, 5000); }
+      $('save').disabled = false; $('save').textContent = '🚀 Terbitkan / Simpan';
+    };
+    async function upload(file, cb) {
+      if (!file) return;
+      toast('Mengunggah foto…', 8000);
+      try { const r = await admin.uploadImage(file, 'img/blog'); cb(r); toast('Foto terunggah ✓'); }
+      catch (e) { toast(e.message, 5000); }
+    }
+    // pratinjau memakai salinan lokal foto (karena file baru di GitHub belum tersedia di situs selama ±1 menit)
+    const localImgs = {};
+    const renderWithLocal = () => { render(); $('preview').querySelectorAll('img').forEach((im) => { const k = im.getAttribute('src'); if (localImgs[k]) im.src = localImgs[k]; });
+      const c = $('cover').value.trim(); if (localImgs[c]) $('coverPrev').src = localImgs[c]; };
+    $('upCover').onchange = (e) => upload(e.target.files[0], (r) => { localImgs[r.path] = r.dataURL; $('cover').value = r.path; dirty = true; renderWithLocal(); e.target.value = ''; });
+    $('upBody').onchange = (e) => upload(e.target.files[0], (r) => {
+      localImgs[r.path] = r.dataURL;
+      const ta = $('body'); ta.setRangeText(`\n![foto](${r.path})\n`, ta.selectionStart, ta.selectionEnd, 'end'); dirty = true; renderWithLocal(); e.target.value = '';
+    });
+    ['body', 'cat', 'title', 'summary', 'cover', 'date', 'draft'].forEach((id) => $(id).addEventListener('input', () => { dirty = true; renderWithLocal(); }));
+    document.querySelectorAll('.tools button').forEach((b) => b.onclick = () => {
+      const ta = $('body'), s = ta.selectionStart, e = ta.selectionEnd, sel = ta.value.slice(s, e);
+      let ins;
+      if (b.dataset.w) ins = b.dataset.w + (sel || 'teks') + b.dataset.w;
+      else if (b.dataset.l) ins = b.dataset.l + (sel || '');
+      else ins = b.dataset.b.replace('\\n\\n', '\n' + sel + '\n');
+      ta.setRangeText(ins, s, e, 'end'); ta.focus(); dirty = true; renderWithLocal();
+    });
+
+    $('repo').textContent = `${CONFIG.owner}/${CONFIG.repo}`;
+    if (admin.isOwner()) {
+      $('lock').style.display = 'none'; $('editor').style.display = '';
+      fresh();
+      if (params.get('cat')) $('cat').value = params.get('cat');
+      if (params.get('edit')) openPost(params.get('edit'));
+      render(); listPosts();
+    }
+  </script>
+</body>
+</html>

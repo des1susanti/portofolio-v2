@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Desi Susanti — Kampus Mini</title>
+  <meta name="description" content="Portofolio interaktif 3D Desi Susanti, M.Kom — Pembelajar | Pendidik | Peneliti">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Gochi+Hand&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <!-- layar awal -->
+  <div id="intro">
+    <div id="start-hint">
+      <svg class="arrow" viewBox="0 0 120 60"><path d="M115,18 C80,0 40,8 12,40 M12,40 L14,20 M12,40 L32,38"
+        fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="hand" data-i18n="start">KLIK UNTUK MULAI</div>
+      <button id="sound-btn" class="hand-icon" title="Suara">
+        <svg viewBox="0 0 60 40"><path d="M6,14 h10 l14,-10 v32 l-14,-10 h-10 z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+          <path class="wave" d="M38,13 q6,7 0,14 M45,8 q11,12 0,24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="loading">memuat…</div>
+  </div>
+
+  <!-- tombol pojok -->
+  <div id="hud" class="hidden">
+    <button id="btn-menu" class="hud-btn" title="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button id="btn-map" class="hud-btn" title="Peta"><svg viewBox="0 0 24 24"><path d="M12 21s-6-6.2-6-11a6 6 0 1 1 12 0c0 4.8-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg></button>
+    <button id="btn-paint" class="hud-btn" title="Warna robot"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-.9-.7-1.3-.7-2.2 0-1 .8-1.6 1.8-1.6H17a4 4 0 0 0 4-4c0-4.6-4-8.5-9-8.5z"/><circle cx="7.5" cy="11" r="1.3"/><circle cx="10" cy="7" r="1.3"/><circle cx="14.5" cy="7" r="1.3"/></svg></button>
+    <button id="btn-daynight" class="hud-btn" title="Siang / Malam"><svg viewBox="0 0 24 24"><path class="moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button>
+    <button id="btn-sound" class="hud-btn" title="Suara"><svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg></button>
+    <button id="btn-lang" class="hud-btn lang">ID</button>
+  </div>
+
+  <div id="menu" class="hidden">
+    <a href="classic.html" data-i18n="classic">Mode biasa</a>
+    <a href="tulis.html" target="_blank" class="owner-only" data-i18n="write">Tulis blog</a>
+  </div>
+
+  <!-- kendali kamera: putar, zoom, kembali ke belakang robot -->
+  <div id="camctl" class="hidden">
+    <button id="cam-l" data-t="rotL">⟲</button>
+    <button id="cam-out" data-t="zoomOut">−</button>
+    <button id="cam-reset" data-t="behind">⌖</button>
+    <button id="cam-in" data-t="zoomIn">+</button>
+    <button id="cam-r" data-t="rotR">⟳</button>
+  </div>
+
+  <!-- label nama gedung -->
+  <div id="labels"></div>
+
+  <!-- papan isi (gaya papan kayu) -->
+  <div id="board" class="hidden">
+    <div class="bd-stage">
+      <div class="bd-chalk">
+        <div><span data-i18n="next">BERIKUT</span> <i>→</i></div>
+        <div><span data-i18n="prev">SEBELUM</span> <i>←</i></div>
+        <div><span data-i18n="open">BUKA</span> <i class="key">↵</i></div>
+        <div><span data-i18n="exit">KELUAR</span> <i class="key">ESC</i></div>
+      </div>
+      <div class="bd-frame">
+        <div class="bd-post l"></div><div class="bd-post r"></div>
+        <div class="bd-head">
+          <div class="bd-place"></div>
+          <h2 class="bd-title"></h2>
+          <a class="bd-link hidden" target="_blank" rel="noopener"></a>
+        </div>
+        <div class="bd-screen">
+          <div class="bd-media"></div>
+          <div class="bd-text"></div>
+        </div>
+        <div class="bd-nav">
+          <button class="bd-prev" title="←">←</button>
+          <div class="bd-dots"></div>
+          <button class="bd-next" title="→">→</button>
+        </div>
+        <div class="bd-badge hidden"></div>
+      </div>
+      <div class="bd-meta"></div>
+    </div>
+    <button class="bd-exit"><span data-i18n="exit">KELUAR</span> ⎋</button>
+    <button class="bd-edit" title="Edit teks">✎</button>
+    <div class="bd-editbar"><button class="bd-save" data-i18n="save">Simpan</button><button class="bd-cancel" data-i18n="cancel">Batal</button></div>
+  </div>
+
+  <!-- notifikasi saat gedung diklik -->
+  <div id="notifs"></div>
+
+  <!-- bilah kegiatan: memancing / membaca -->
+  <div id="activity" class="hidden"><span class="act-text"></span><button class="act-exit"><span data-i18n="exit">KELUAR</span> ⎋</button></div>
+
+  <!-- peta -->
+  <div id="map" class="hidden">
+    <div class="map-card">
+      <button class="panel-close" title="Tutup">×</button>
+      <div class="map-wrap"><img id="map-img" alt="peta"><div id="map-markers"></div><div id="map-me"></div></div>
+      <div id="map-legend"></div>
+    </div>
+  </div>
+
+  <!-- tuas sentuh -->
+  <div id="joy" class="hidden"><div id="joy-knob"></div></div>
+
+  <div id="toast"></div>
+  <div id="laptimer" class="hidden"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

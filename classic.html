@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desi Susanti — Portofolio</title>
+  <meta name="description" content="Portofolio Desi Susanti, M.Kom — Pembelajar | Pendidik | Peneliti">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #241726; --cream: #fbf3ea; --wood: #c9703f; --wood2: #b8623a; --rose: #e0567f; --violet: #9b59d0; --gold: #f1b434; --night: #170d12; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Nunito, Arial, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.65; overflow-x: hidden; }
+    a { color: #b0392f; }
+    .hand { font-family: "Amatic SC", cursive; letter-spacing: 1px; }
+
+    /* ---------- navigasi ---------- */
+    nav { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 4px; padding: 6px;
+      background: rgba(36, 23, 38, .82); backdrop-filter: blur(10px); border-radius: 40px; box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      max-width: calc(100vw - 24px); overflow-x: auto; scrollbar-width: none; }
+    nav a { color: #f6e9f0; text-decoration: none; font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 30px; white-space: nowrap; transition: .2s; }
+    nav a:hover, nav a.on { background: #fff; color: var(--ink); }
+    nav .lang { background: var(--gold); color: var(--ink); }
+
+    /* ---------- hero ---------- */
+    .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 30px;
+      padding: 110px 7vw 60px; overflow: hidden; background: linear-gradient(160deg, #2a1a24 0%, #5a2340 55%, #c9703f 120%); color: #fff3ea; }
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) 1.2px, transparent 1.2px);
+      background-size: 26px 26px; opacity: .5; pointer-events: none; }
+    .hero small { color: var(--gold); font-weight: 900; letter-spacing: 3px; }
+    .hero h1 { font-size: clamp(56px, 9vw, 130px); margin: 6px 0 0; line-height: .9; }
+    .hero h1 span { display: inline-block; animation: drop .8s cubic-bezier(.2,1.6,.4,1) both; }
+    .hero .tag { font-size: clamp(18px, 2.2vw, 26px); margin: 14px 0 26px; opacity: .9; }
+    .hero .quote { max-width: 560px; font-style: italic; opacity: .85; border-left: 4px solid var(--gold); padding-left: 16px; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 12px; font-weight: 900; text-decoration: none;
+      transition: transform .15s, box-shadow .15s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn.a { background: var(--rose); color: #fff; box-shadow: 0 6px 0 #a33256; }
+    .btn.b { background: #fff3ea; color: var(--ink); box-shadow: 0 6px 0 #c9a990; }
+    .photo { position: relative; justify-self: center; width: min(420px, 80vw); aspect-ratio: 427 / 585; }
+    .photo .blob { position: absolute; inset: 8% -6% -4% -6%; border-radius: 46% 54% 40% 60% / 50% 40% 60% 50%;
+      background: linear-gradient(135deg, var(--gold), var(--rose)); animation: morph 9s ease-in-out infinite; }
+    .photo img { position: relative; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,.35)); }
+    /* galeri foto rapi (wisuda) */
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 170px; gap: 12px; }
+    .grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; cursor: zoom-in; box-shadow: 0 8px 20px rgba(0,0,0,.2); transition: transform .25s; }
+    .grid img:hover { transform: scale(1.03); }
+    .grid img.big { grid-column: span 2; grid-row: span 2; }
+    .grid img.tall { grid-row: span 2; }
+    .edu { display: grid; grid-template-columns: 300px 1fr; gap: 26px; align-items: start; }
+    .edu .card { color: var(--ink); text-align: center; }
+    .edu .card img { height: 90px; }
+    @media (max-width: 860px) { .edu { grid-template-columns: 1fr; } .grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; } }
+    /* alat pemilik */
+    body:not(.owner) .own, body:not(.owner) .post .tools { display: none !important; }
+    .ownbar.own { display: flex; }
+    .ownbar { gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .ownbtn { border: 0; background: var(--gold); color: #3b2400; padding: 8px 14px; border-radius: 10px; font: inherit; font-weight: 900; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+    .ownbtn.red { background: #ff8f8f; } .ownbtn.ghost { background: #f0dccb; }
+    .photos { position: relative; }
+    .ph { position: relative; flex: none; } .ph .ownbtn { position: absolute; top: 8px; right: 8px; padding: 4px 8px; font-size: 12px; }
+    [contenteditable="true"] { outline: 3px dashed var(--gold); outline-offset: 6px; border-radius: 6px; }
+    .post .tools { display: none; gap: 8px; padding: 0 18px 14px; }
+    body.owner .post .tools { display: flex; }
+    .qr { width: 220px; border-radius: 16px; margin: 0 auto 20px; display: block; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+    .ownerlink { color: #b9a5b4; font-size: 12px; }
+    .scroll { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); opacity: .7; animation: float 2s infinite; }
+
+    /* ---------- bagian ---------- */
+    section.part { padding: 90px 7vw; position: relative; }
+    .head { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+    .no { display: inline-grid; place-items: center; width: 40px; height: 40px; background: var(--ink); color: #fff; transform: rotate(45deg);
+      border-radius: 6px; font-weight: 900; flex: none; }
+    .no span { transform: rotate(-45deg); }
+    .head h2 { margin: 0; font-size: clamp(40px, 5vw, 64px); line-height: 1; }
+    .head p { margin: 0; color: #8a7a80; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .dark { background: var(--night); color: #f6e9f0; }
+    .dark .head p { color: #b9a5b4; }
+    .dark a { color: #ffb2e0; }
+    .wood { background: repeating-linear-gradient(0deg, var(--wood) 0 24px, var(--wood2) 24px 26px); color: #fff3ea; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .card { background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 14px 40px rgba(36,23,38,.1); border: 2px solid #f0dccb; }
+    .dark .card { background: #24161f; border-color: #3a2533; box-shadow: none; }
+    blockquote { margin: 0 0 14px; padding: 14px 18px; border-left: 4px solid var(--gold); background: #fbefd9; border-radius: 8px; font-style: italic; }
+    .dark blockquote { background: rgba(255,255,255,.06); }
+
+    /* galeri geser */
+    .strip { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 18px; scrollbar-width: thin; }
+    .strip img { height: 300px; border-radius: 14px; scroll-snap-align: center; cursor: zoom-in; transition: transform .25s; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+    .strip img:hover { transform: scale(1.03) rotate(-1deg); }
+
+    /* keahlian */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .skill { padding: 22px; border-radius: 16px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.25); transition: transform .2s; }
+    .skill:hover { transform: translateY(-6px) rotate(-1deg); }
+    .skill b { display: block; font-size: 18px; margin-bottom: 6px; } .skill .e { font-size: 34px; }
+
+    /* proyek: kartu balik */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .filters button { border: 2px solid #e9d4c3; background: #fff; padding: 8px 16px; border-radius: 30px; font: inherit; font-weight: 700; cursor: pointer; }
+    .filters button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+    .flip { perspective: 1200px; height: 340px; cursor: pointer; }
+    .flip-in { position: relative; width: 100%; height: 100%; transition: transform .7s cubic-bezier(.3,1.3,.5,1); transform-style: preserve-3d; }
+    .flip.on .flip-in { transform: rotateY(180deg); }
+    .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 14px 34px rgba(36,23,38,.15); background: #fff; }
+    .face.back { transform: rotateY(180deg); background: var(--ink); color: #f6e9f0; padding: 22px; }
+    .face .pic { flex: 1; background: #170d12 center / cover no-repeat; display: grid; place-items: center; font-size: 80px; }
+    .face .cap { padding: 14px 18px; }
+    .face .cap b { display: block; font-size: 18px; }
+    .chip { display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: 1px; background: var(--gold); color: #4a2a00; padding: 2px 8px; border-radius: 6px; }
+    .face.back p { font-size: 14.5px; flex: 1; overflow: auto; }
+    .face.back a { display: inline-block; margin-top: 8px; background: var(--violet); color: #fff; padding: 8px 14px; border-radius: 10px; text-decoration: none; font-weight: 700; }
+
+    /* prestasi */
+    .trophy { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; margin-bottom: 22px; }
+    .trophy .cup { font-size: 80px; text-align: center; animation: float 3s ease-in-out infinite; }
+    .trophy h3 { margin: 0; font-size: 22px; }
+
+    /* blog */
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .tabs button { border: 0; padding: 10px 18px; border-radius: 12px; font: inherit; font-weight: 900; cursor: pointer; background: rgba(255,255,255,.15); color: #fff; }
+    .tabs button.on { background: #fff; color: var(--ink); }
+    .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+    .post { background: #fff8ef; color: var(--ink); border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform .2s; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+    .post:hover { transform: translateY(-5px); }
+    .post .cv { height: 150px; background: #2a1a24 center / cover no-repeat; display: grid; place-items: center; font-size: 60px; }
+    .post .tx { padding: 14px 18px; } .post small { color: #8a7a80; }
+    .write { display: inline-block; margin-top: 22px; color: #fff; font-weight: 900; }
+
+    /* kontak */
+    .links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .links a { display: flex; align-items: center; gap: 10px; padding: 14px 22px; background: #fff; border-radius: 14px; text-decoration: none; color: var(--ink);
+      font-weight: 900; box-shadow: 0 6px 0 #e3cdb9; transition: transform .15s; }
+    .links a:hover { transform: translateY(-4px) rotate(-1deg); }
+    footer { text-align: center; padding: 40px 20px 60px; color: #8a7a80; font-size: 14px; }
+
+    /* jendela baca & foto */
+    .modal { position: fixed; inset: 0; z-index: 50; background: rgba(23,13,18,.8); display: none; place-items: center; padding: 20px; }
+    .modal.show { display: grid; animation: fadein .25s; }
+    .modal .box { background: var(--night); color: #f6e9f0; max-width: 760px; width: 100%; max-height: 88vh; overflow: auto; border-radius: 18px; padding: 30px;
+      border: 6px solid #6d3a24; line-height: 1.7; }
+    .modal .box h1, .modal .box h2 { font-family: "Amatic SC", cursive; color: #ffd6a8; font-size: 44px; line-height: 1; }
+    .modal .box img { max-width: 100%; border-radius: 10px; }
+    .modal .box code, .modal .box pre { background: #2c2030; color: #ffd6f0; border-radius: 6px; } .modal .box code { padding: 1px 5px; } .modal .box pre { padding: 12px; overflow: auto; }
+    .modal .box table { border-collapse: collapse; } .modal .box td, .modal .box th { border: 1px solid #555; padding: 4px 8px; }
+    .modal .box a { color: #ffb2e0; }
+    .modal > img { max-width: 92vw; max-height: 88vh; border-radius: 12px; }
+    .x { position: fixed; top: 18px; right: 22px; width: 46px; height: 46px; border-radius: 50%; border: 0; font-size: 26px; cursor: pointer; background: #fff3ea; }
+
+    @keyframes drop { from { transform: translateY(-80px) rotate(-12deg); opacity: 0; } }
+    @keyframes float { 50% { transform: translateY(-10px); } }
+    @keyframes morph { 50% { border-radius: 58% 42% 55% 45% / 42% 58% 42% 58%; transform: rotate(6deg); } }
+    @keyframes fadein { from { opacity: 0; } }
+    @media (max-width: 860px) {
+      .hero, .split { grid-template-columns: 1fr; }
+      .hero { text-align: center; } .hero .quote { margin: 0 auto; } .btns { justify-content: center; }
+      .strip img { height: 220px; }
+      .trophy { grid-template-columns: 1fr; text-align: center; }
+    }
+    .ico-x { width: 1.15em; height: 1.15em; vertical-align: -0.2em; background: #000; color: #fff; border-radius: 5px; padding: 3px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <nav id="nav"></nav>
+  <header class="hero" id="beranda">
+    <div>
+      <small data-t="welcome">SELAMAT DATANG 👋</small>
+      <h1 class="hand" id="hname"></h1>
+      <div class="tag" id="tagline"></div>
+      <div class="quote" id="quote"></div>
+      <div class="btns">
+        <a class="btn a" href="index.html">🎮 <span data-t="play">Jelajahi Kampus 3D</span></a>
+        <a class="btn b" href="#kontak">💬 <span data-t="contact">Hubungi Saya</span></a>
+      </div>
+    </div>
+    <div class="photo"><div class="blob"></div><img id="hphoto" alt="Desi Susanti">
+</div>
+    <div class="scroll">⌄</div>
+  </header>
+  <main id="main"></main>
+  <footer>© 2026 DESI SUSANTI · <a href="index.html">Kampus 3D</a> · <a href="https://des1susanti.pythonanywhere.com" target="_blank">v1</a></footer>
+  <input type="file" accept="image/*" id="filepick" hidden>
+  <div class="ok" id="toast" style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#241726;color:#fff;padding:10px 18px;border-radius:30px;z-index:60;display:none"></div>
+  <div class="modal" id="modal"><button class="x" id="mx">×</button><div class="box" id="mbox"></div></div>
+  <div class="modal" id="lightbox"><button class="x">×</button><img id="lbimg" alt=""></div>
+
+  <script type="module">
+    import { LOCATIONS, PROFILE, PROJECTS } from './js/content.js';
+    import { md } from './js/markdown.js';
+    import * as admin from './js/admin.js';
+    admin.injectOwnerCSS(); admin.applyOwnerClass();
+    const toast = (m, ms = 3000) => { const el = document.getElementById('toast'); el.textContent = m; el.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => (el.style.display = 'none'), ms); };
+    admin.mountGear(async () => { admin.applyOwnerClass(); edits = await admin.loadEdits(true); posts = await admin.loadPosts(); render(); });
+    let lang = 'id';
+    try { lang = JSON.parse(localStorage.getItem('kampus-lang2')) || 'id'; } catch (e) {}
+    const t = (o) => (o == null ? '' : typeof o === 'string' ? o : o[lang] ?? o.id);
+    const L = Object.fromEntries(LOCATIONS.map((l) => [l.key, l]));
+    const W = {
+      welcome: { id: 'SELAMAT DATANG 👋', en: 'WELCOME 👋' }, play: { id: 'Jelajahi Kampus 3D', en: 'Explore the 3D Campus' },
+      contact: { id: 'Hubungi Saya', en: 'Contact Me' }, all: { id: 'Semua', en: 'All' }, flip: { id: 'klik kartu untuk membalik', en: 'click a card to flip it' },
+      write: { id: '✍️ Tulis blog', en: '✍️ Write a post' }, read: { id: 'Baca', en: 'Read' },
+      nav: [['beranda', 'Beranda', 'Home'], ['tentang', 'Tentang', 'About'], ['pendidikan', 'Pendidikan', 'Education'], ['riset', 'Riset', 'Research'],
+        ['proyek', 'Proyek', 'Projects'], ['prestasi', 'Prestasi', 'Awards'], ['blog', 'Blog', 'Blog'], ['kontak', 'Kontak', 'Contact']],
+    };
+    let posts = await admin.loadPosts();
+    let edits = await admin.loadEdits();
+    // teks yang sudah diubah pemilik (data/edits.json), sama dengan yang dipakai Kampus 3D
+    const E = (key, i, field, fallback) => { const e = edits[`${key}:${i}`] && edits[`${key}:${i}`][lang]; return e && e[field] != null ? e[field] : fallback; };
+    const ABOUT_PHOTOS = ['img/v1/about-main.jpg', 'img/v1/utama.jpg', 'img/v1/dsi.jpg'];
+    let localImgs = {};
+    const src = (p) => localImgs[p] || p;
+    let blogCat = 'kode', projFilter = 'ALL';
+
+    const head = (no, title, sub) => `<div class="head"><div class="no"><span>${no}</span></div><div><h2 class="hand">${title}</h2>${sub ? `<p>${sub}</p>` : ''}</div></div>`;
+    const strip = (imgs) => `<div class="strip">${imgs.map((s) => `<img src="${s}" loading="lazy" alt="">`).join('')}</div>`;
+
+    function render() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-t]').forEach((el) => (el.textContent = t(W[el.dataset.t])));
+      let k = 0;
+      document.getElementById('hname').innerHTML = PROFILE.name.split(' ').map((w) => `<span style="white-space:nowrap">` +
+        w.split('').map((c) => `<span style="animation-delay:${(k++) * 0.05}s">${c}</span>`).join('') + '</span>').join(' ');
+      document.getElementById('tagline').textContent = t(PROFILE.tagline);
+      document.getElementById('quote').textContent = '"' + t(PROFILE.quote) + '"';
+      document.getElementById('hphoto').src = PROFILE.photo;
+      document.getElementById('nav').innerHTML = W.nav.map(([id, a, b]) => `<a href="#${id}">${lang === 'id' ? a : b}</a>`).join('') +
+        `<a href="#" class="lang" id="lang">${lang === 'id' ? 'EN' : 'ID'}</a>`;
+      document.getElementById('lang').onclick = (e) => { e.preventDefault(); lang = lang === 'id' ? 'en' : 'id'; try { localStorage.setItem('kampus-lang2', JSON.stringify(lang)); } catch (er) {} render(); };
+
+      const ber = L.beranda.slides, aud = L.auditorium.slides, lab = L.lab.slides, pre = L.prestasi.slides;
+      const cats = ['ALL', ...new Set(PROJECTS.map((p) => p.tag))];
+      document.getElementById('main').innerHTML = `
+      <section class="part" id="tentang"><div class="split reveal">
+        <div>${head(2, `<span id="ab-title">${E('beranda', 0, 'title', t(ber[0].title))}</span>`)}
+          <div class="card"><div id="ab-t0">${E('beranda', 0, 'text', t(ber[0].text))}</div><div id="ab-t1">${E('beranda', 1, 'text', t(ber[1].text))}</div></div>
+          <div class="own ownbar"><button class="ownbtn" id="ab-edit">✎ Edit kata-kata</button><button class="ownbtn" id="ab-save" style="display:none">💾 Simpan</button>
+            <button class="ownbtn ghost" id="ab-cancel" style="display:none">Batal</button></div></div>
+        <div class="photos"><div class="strip">${(edits['about-photos'] || ABOUT_PHOTOS).map((p, i) => `<div class="ph"><img src="${src(p)}" loading="lazy" alt="">
+          <button class="ownbtn own" data-rep="${i}">📷 Ganti</button></div>`).join('')}</div>
+          <div class="own ownbar"><button class="ownbtn" id="ab-add">＋ Tambah foto</button><button class="ownbtn red" id="ab-del">🗑 Hapus foto terakhir</button></div></div></div></section>
+
+      <section class="part wood" id="pendidikan"><div class="reveal">${head(4, t(L.auditorium.title))}
+        <div class="edu"><div class="card"><img src="img/v1/logo.png" alt="">${E('auditorium', 0, 'text', t(aud[0].text))}</div>
+        <div class="grid">${aud.filter((s) => s.photo).map((s, i) => `<img src="${s.img}" loading="lazy" alt="" class="${['big', '', 'tall', '', '', '', ''][i] || ''}">`).join('')}</div></div></div></section>
+
+      <section class="part dark" id="riset"><div class="reveal">${head(5, t(L.lab.title), t(L.lab.notes)[0])}
+        <div class="split"><div class="card">${E('lab', 0, 'text', t(lab[0].text))}<p><a href="${lab[0].link.url}" target="_blank">📄 ${lab[0].link.label}</a></p></div>
+        <img src="img/v1/research_thumb.jpg" alt="" style="width:100%;border-radius:16px"></div>
+        <h3 style="margin-top:40px">${lang === 'id' ? 'Keahlian & Kompetensi' : 'Skills'}</h3>
+        <div class="skills">${[['🤖', 'AI & Machine Learning', 'Deep Learning, Neural Networks, Predictive Modeling'], ['📈', 'Computational Modeling', 'SVR, Optimization Algorithms, Simulation'],
+          ['💻', 'Programming & Dev', 'Python, Flask, SQL, Web Development'], ['📊', 'Data Science', 'Pandas, NumPy, Scikit-Learn, Matplotlib'],
+          ['✋', 'Computer Vision', 'OpenCV, MediaPipe']].map(([e, a, b]) => `<div class="skill"><div class="e">${e}</div><b>${a}</b>${b}</div>`).join('')}</div></div></section>
+
+      <section class="part" id="proyek"><div class="reveal">${head(6, t(L.galeri.title), t(W.flip))}
+        <div class="filters">${cats.map((c) => `<button data-f="${c}" class="${c === projFilter ? 'on' : ''}">${c === 'ALL' ? t(W.all) : c}</button>`).join('')}</div>
+        <div class="projects">${PROJECTS.filter((p) => projFilter === 'ALL' || p.tag === projFilter).map((p) => `
+          <div class="flip"><div class="flip-in">
+            <div class="face"><div class="pic" style="${p.img ? `background-image:url('${p.img}')` : ''}">${p.img ? '' : p.icon || '📁'}</div>
+              <div class="cap"><span class="chip">${p.tag}</span><b>${p.name}</b><small>${p.with}</small></div></div>
+            <div class="face back"><b>${p.name}</b><p>${t(p.desc)}</p>${p.url ? `<a href="${p.url}" target="_blank" onclick="event.stopPropagation()">GitHub / Link ↗</a>` : ''}</div>
+          </div></div>`).join('')}</div></div></section>
+
+      <section class="part dark" id="prestasi"><div class="reveal">${head(8, t(L.prestasi.title))}
+        <div class="trophy"><div class="cup">🏆</div><div><span class="chip">JUARA 2 · 2024</span><h3>${E('prestasi', 0, 'title', t(pre[0].title))}</h3>${E('prestasi', 0, 'text', t(pre[0].text))}</div></div>
+        ${strip(pre.filter((s) => s.img && s.img.includes('jambore')).map((s) => s.img))}
+        <div class="trophy" style="margin-top:30px"><div class="cup" style="animation-delay:-1.5s">🥇</div><div><span class="chip">PERINGKAT 1 · 2023</span><h3>${E('prestasi', pre.length - 2, 'title', t(pre[pre.length - 2].title))}</h3>${E('prestasi', pre.length - 2, 'text', t(pre[pre.length - 2].text))}</div></div>
+        ${strip(['img/v1/bbp2.jpg', 'img/v1/bbp1.jpg'])}</div></section>
+
+      <section class="part wood" id="blog"><div class="reveal">${head('✎', 'Blog', '')}
+        <div class="tabs">${[['kode', '💻 Kode', '💻 Code'], ['kuliner', '🍜 Kuliner', '🍜 Food'], ['jalan-jalan', '🧳 Jalan-jalan', '🧳 Travel']]
+          .map(([c, a, b]) => `<button data-c="${c}" class="${c === blogCat ? 'on' : ''}">${lang === 'id' ? a : b}</button>`).join('')}</div>
+        <div class="posts">${(posts.filter((p) => p.cat === blogCat).map((p, i) => `<div class="post" data-p="${posts.indexOf(p)}">
+          <div class="cv" style="${p.cover ? `background-image:url('${p.cover}')` : ''}">${p.cover ? '' : { kode: '💻', kuliner: '🍜', 'jalan-jalan': '🧳' }[p.cat]}</div>
+          <div class="tx"><b>${t(p.title)}</b><br>${t(p.summary || '')}<br><small>${p.date}${p.draft ? ' · draf' : ''}</small></div>
+          <div class="tools"><a class="ownbtn" href="tulis.html?edit=${encodeURIComponent(p.file)}" data-stop>✎ Edit</a><button class="ownbtn red" data-del="${posts.indexOf(p)}">🗑 Hapus</button></div></div>`).join('')) || '<p>—</p>'}</div>
+        <a class="write own" href="tulis.html?cat=${blogCat}">${t(W.write)} →</a></div></section>
+
+      <section class="part" id="kontak" style="text-align:center"><div class="reveal">${head(13, t(L.pos.title))}
+        <div class="links">${PROFILE.links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener" title="${l.label}" aria-label="${l.label}">${l.icon}${l.iconOnly ? '' : ' ' + l.label}</a>`).join('')}</div></div></section>`;
+
+      // perilaku
+      document.querySelectorAll('.flip').forEach((f) => (f.onclick = () => f.classList.toggle('on')));
+      document.querySelectorAll('[data-f]').forEach((b) => (b.onclick = () => { projFilter = b.dataset.f; render(); location.hash = 'proyek'; }));
+      document.querySelectorAll('[data-c]').forEach((b) => (b.onclick = () => { blogCat = b.dataset.c; render(); document.getElementById('blog').scrollIntoView(); }));
+      document.querySelectorAll('.post').forEach((el) => (el.onclick = async (e) => {
+        if (e.target.closest('[data-stop]')) return;
+        const del = e.target.closest('[data-del]');
+        if (del) {
+          const p = posts[+del.dataset.del];
+          if (!confirm(`Hapus tulisan "${t(p.title)}"?`)) return;
+          try { await admin.removePost(p.file); posts = posts.filter((x) => x !== p); render(); toast('Tulisan dihapus ✓ — situs diperbarui ±1 menit'); }
+          catch (er) { toast(er.message, 5000); }
+          return;
+        }
+        const p = posts[+el.dataset.p];
+        const f = typeof p.file === 'string' ? p.file : p.file[lang] || p.file.id;
+        const md_ = (await admin.readText('posts/' + f)) || '';
+        document.getElementById('mbox').innerHTML = `<p style="opacity:.7">${p.date}</p>` + md(md_);
+        document.getElementById('modal').classList.add('show');
+      }));
+      bindOwnerAbout();
+      document.querySelectorAll('.strip img, .grid img').forEach((im) => (im.onclick = () => {
+        document.getElementById('lbimg').src = im.src; document.getElementById('lightbox').classList.add('show');
+      }));
+      const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && e.target.classList.add('in')), { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    }
+    // ---------- pemilik: edit kata-kata & foto di bagian Tentang
+    function pickImage() {
+      return new Promise((ok) => { const f = document.getElementById('filepick'); f.value = ''; f.onchange = () => ok(f.files[0]); f.click(); });
+    }
+    async function savePhotos(list, msg) {
+      try { edits = await admin.saveEdit('about-photos', list, msg); toast('Foto tersimpan ✓ — situs diperbarui ±1 menit'); render(); }
+      catch (e) { toast(e.message, 5000); }
+    }
+    function bindOwnerAbout() {
+      if (!admin.isOwner()) return;
+      const ids = ['ab-title', 'ab-t0', 'ab-t1'];
+      const eb = document.getElementById('ab-edit'), sb = document.getElementById('ab-save'), cb = document.getElementById('ab-cancel');
+      eb.onclick = () => { ids.forEach((i) => (document.getElementById(i).contentEditable = 'true')); eb.style.display = 'none'; sb.style.display = cb.style.display = ''; document.getElementById('ab-t0').focus(); };
+      cb.onclick = () => render();
+      sb.onclick = async () => {
+        sb.disabled = true; sb.textContent = 'Menyimpan…';
+        try {
+          const v0 = { ...(edits['beranda:0'] || {}) }, v1 = { ...(edits['beranda:1'] || {}) };
+          const L0 = L.beranda.slides;
+          v0[lang] = { title: document.getElementById('ab-title').innerHTML, text: document.getElementById('ab-t0').innerHTML };
+          v1[lang] = { title: E('beranda', 1, 'title', t(L0[1].title)), text: document.getElementById('ab-t1').innerHTML };
+          await admin.saveEdit('beranda:0', v0, 'Edit teks Tentang');
+          edits = await admin.saveEdit('beranda:1', v1, 'Edit teks Tentang');
+          toast('Kata-kata tersimpan ✓ — juga tampil di Gedung Beranda (3D)'); render();
+        } catch (e) { toast(e.message, 5000); sb.disabled = false; sb.textContent = '💾 Simpan'; }
+      };
+      const list = () => [...(edits['about-photos'] || ABOUT_PHOTOS)];
+      document.querySelectorAll('[data-rep]').forEach((b) => (b.onclick = async (e) => {
+        e.stopPropagation();
+        const f = await pickImage(); if (!f) return;
+        toast('Mengunggah foto…', 9000);
+        try { const r = await admin.uploadImage(f, 'img/tentang'); localImgs[r.path] = r.dataURL; const l = list(); l[+b.dataset.rep] = r.path; savePhotos(l, 'Ganti foto Tentang'); }
+        catch (er) { toast(er.message, 5000); }
+      }));
+      document.getElementById('ab-add').onclick = async () => {
+        const f = await pickImage(); if (!f) return;
+        toast('Mengunggah foto…', 9000);
+        try { const r = await admin.uploadImage(f, 'img/tentang'); localImgs[r.path] = r.dataURL; savePhotos([...list(), r.path], 'Tambah foto Tentang'); }
+        catch (er) { toast(er.message, 5000); }
+      };
+      document.getElementById('ab-del').onclick = () => { const l = list(); if (l.length > 1 && confirm('Hapus foto terakhir dari bagian Tentang?')) savePhotos(l.slice(0, -1), 'Hapus foto Tentang'); };
+    }
+    document.querySelectorAll('.modal').forEach((m) => m.addEventListener('click', (e) => { if (e.target === m || e.target.classList.contains('x')) m.classList.remove('show'); }));
+    addEventListener('keydown', (e) => e.key === 'Escape' && document.querySelectorAll('.modal').forEach((m) => m.classList.remove('show')));
+    // tandai menu sesuai bagian yang sedang dilihat
+    addEventListener('scroll', () => {
+      let cur = 'beranda';
+      for (const [id] of W.nav) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) cur = id; }
+      document.querySelectorAll('nav a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+    }, { passive: true });
+    render();
+  </script>
+</body>
+</html>
