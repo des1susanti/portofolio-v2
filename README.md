@@ -1,14 +1,14 @@
-# Kampus Mini — Portofolio 3D Desi Susanti (v2)
+# Kampus Mini — Portofolio 3D Desi Susanti
 
-**EN:** An interactive 3D portfolio: walk a little robot around a mini campus, visit buildings to read
-about my research, projects, achievements and blog (code, food, travel). Built with Three.js, no server needed.
+**EN:** An interactive 3D portfolio: walk a little robot around a mini campus and visit buildings to read
+about my research, projects, achievements and blog (code, food, travel).
 
 **ID:** Portofolio 3D interaktif: jalankan robot kecil berkeliling kampus mini, datangi gedung-gedung untuk
-membaca riset, proyek, prestasi, dan blog (kode, kuliner, jalan-jalan). Dibuat dengan Three.js, tanpa server.
+membaca riset, proyek, prestasi, dan blog (kode, kuliner, jalan-jalan).
 
 ### 🎮 [Jelajahi Kampus Mini 3D →](https://des1susanti.github.io/portofolio-v2/)  ·  📄 [Mode biasa →](https://des1susanti.github.io/portofolio-v2/classic.html)
 
-Versi pertama (Flask + Tailwind): [des1susanti.pythonanywhere.com](https://des1susanti.pythonanywhere.com)
+Versi pertama: [des1susanti.pythonanywhere.com](https://des1susanti.pythonanywhere.com)
 
 [![Kampus Mini 3D](img/preview-kampus.png)](https://des1susanti.github.io/portofolio-v2/)
 
@@ -25,21 +25,21 @@ Versi pertama (Flask + Tailwind): [des1susanti.pythonanywhere.com](https://des1s
 |---|---|
 | `W A S D` / tombol panah | Jalankan robot |
 | `Shift` | Berlari |
-| Seret layar | Geser pandangan atas-bawah-kanan-kiri |
-| Seret klik-kanan / `Ctrl`+seret / `Q` `E` | Putar kamera |
+| Seret layar | Geser pandangan |
+| Seret klik-kanan / `Q` `E` | Putar kamera |
 | Gulir mouse / tombol `+` `−` | Perbesar / perkecil |
-| Tombol ⌖ | Kamera kembali ke belakang robot (searah hadap robot) |
+| Tombol ⌖ | Kamera kembali ke belakang robot |
 | Klik gedung | Muncul catatan singkat isi gedung |
 | Masuk pintu ◆ | Pintu terbuka, robot masuk, papan isi muncul |
 | `←` `→` / `Enter` / `Esc` | Di dalam gedung: geser isi / buka tautan / keluar |
-| ✎ (pojok kanan bawah, khusus pemilik) | Edit teks di dalam gedung |
-| `M` | Peta · `N` siang/malam |
+| `M` / `N` | Peta / siang-malam |
 | Tuas pojok kiri bawah | Kontrol di HP |
 
-Tombol pojok kanan atas: **menu** (mode biasa), **peta**, **warna robot**, **siang/malam**, **suara**, **ID/EN**. Roda gigi samar ⚙ di pojok kiri atas: masuk pemilik.
+Tombol di pojok kanan atas: **menu**, **peta**, **warna robot**, **siang/malam**, **suara**, **ID/EN**.
 
-**Hal-hal kecil:** musik pembuka saat mulai · rumput & daun bergoyang · kucing, burung, kupu-kupu, kunang-kunang (malam) ·
-air mancur di bundaran · memancing di dermaga Taman Danau · membaca di bangku taman (buku tersambung ke Google Books) · mini game bola & lintasan · permata tersembunyi.
+**Hal-hal kecil:** musik latar ceria · rumput dan daun bergoyang · kucing, burung, kupu-kupu, kunang-kunang (malam) ·
+air mancur di bundaran · memancing di dermaga Taman Danau · membaca buku di bangku taman (tersambung ke Google Books) ·
+mini game bola dan lintasan · permata tersembunyi.
 
 <table>
   <tr>
@@ -60,8 +60,9 @@ air mancur di bundaran · memancing di dermaga Taman Danau · membaca di bangku 
 
 ## Mode biasa
 
-`classic.html` — halaman portofolio biasa (tanpa 3D) dengan animasi, galeri foto geser, kartu proyek yang bisa dibalik,
-filter proyek, dan blog. Cocok untuk HP lemah dan mudah ditemukan Google.
+Versi tanpa 3D, cocok untuk HP atau komputer yang lambat: animasi ringan, galeri foto, kartu proyek yang bisa dibalik,
+filter proyek, dan blog. Buka lewat menu di Kampus 3D atau langsung di
+[des1susanti.github.io/portofolio-v2/classic.html](https://des1susanti.github.io/portofolio-v2/classic.html).
 
 <table>
   <tr>
@@ -73,44 +74,9 @@ filter proyek, dan blog. Cocok untuk HP lemah dan mudah ditemukan Google.
   </tr>
 </table>
 
-## Menjalankan di VS Code
+## Dibuat dengan
 
-Situs ini memakai modul JavaScript, jadi **harus dibuka lewat server lokal** (tidak bisa klik dua kali `index.html`).
-
-**Cara 1 — ekstensi Live Server (paling mudah)**
-1. Buka folder `portofolio-v2` di VS Code.
-2. Pasang ekstensi **Live Server** (VS Code akan menyarankannya otomatis).
-3. Klik kanan `index.html` → **Open with Live Server**.
-
-**Cara 2 — Terminal VS Code**
-```bash
-python3 -m http.server 8000
-```
-lalu buka http://localhost:8000 di browser.
-
-## Mengubah isi
-
-| Yang diubah | Caranya |
-|---|---|
-| Teks gedung, catatan klik, proyek, kontak | `js/content.js` |
-| Teks gedung, teks & foto *Tentang*, daftar buku | langsung dari situs dalam **mode pemilik** → otomatis tersimpan ke GitHub (`data/edits.json`) |
-| Tulisan blog (tulis, edit, hapus, unggah foto) | **mode pemilik** → menu **Tulis blog** (`tulis.html`) → 🚀 Terbitkan |
-| Foto | taruh di `img/` (kecilkan dulu, lebar ±1200 px) |
-| Musik pembuka | ganti file `audio/pembuka.mp3` |
-| Gedung, pohon, jalan | `js/world.js` · hewan: `js/animals.js` · robot: `js/robot.js` |
-
-Komputer terasa berat? Buka dengan `index.html?ringan` (tanpa bayangan dan lampu malam).
-
-## Menerbitkan dengan GitHub Pages (gratis)
-
-1. Unggah folder ini ke repo baru bernama `portofolio-v2` (kalau namanya lain, ubah `CONFIG` di `js/content.js`).
-2. Di GitHub: **Settings → Pages → Source: Deploy from a branch → main / (root) → Save**.
-3. Tunggu 1–2 menit, situs tampil di [des1susanti.github.io/portofolio-v2](https://des1susanti.github.io/portofolio-v2/).
-
-## Teknologi
-
-Three.js r160 (disertakan di `vendor/`, lisensi MIT) · JavaScript modul · HTML/CSS · tanpa server, tanpa build.
-Dibuat dengan bantuan AI.
+Three.js · JavaScript · HTML · CSS · GitHub Pages
 
 ---
 
