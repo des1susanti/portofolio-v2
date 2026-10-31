@@ -6,5 +6,13 @@
     "ct": "Qp9r4+NCOZCCi6wazIzm2klcWVALk3I+82amocFpGoqvgJ4Gp+y5yNUYjULoRNeLpLozvK6wSaV2Vr08WeZ7nT3juGEbRMi7AAp+ksdpktOXCmWaOxDSAsfVNtZCC3rgRm5lLAiCvQZmKD2wSg==",
     "iter": 600000,
     "dibuat": "2026-10-31"
+  },
+  {
+    "id": "UBMwhn+zFKI8xuTJ/nj7wwx/qkvEYdxrLNzecNNX164=",
+    "salt": "/bkgivyC0jNemykU2tvwmg==",
+    "iv": "HILY7YlX/eV1zxz7",
+    "ct": "s8Yer9XvTeXBzsv3TQ+Ta7l+dc/wZSkFoDROcELlWPB8VLDITBG/uQehMTL8nYNNSNctXD0GUJrlAcVN+A54MnJ6Nj+Vk2i2dsgZT3+cuxRiTZ9xOflGcGjtzCSzD8EzIzGGlmsAjUV2CqzaVQ==",
+    "iter": 600000,
+    "dibuat": "2026-10-31"
   }
 ]
