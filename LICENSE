@@ -19,11 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 Note: The MIT License above applies to the source code only.
-Photos, images, audio, and personal content (e.g. in the img/
-and audio/ folders) are © Desi Susanti, all rights reserved,
-and may not be reused without permission.
+
+Photos, images, and personal content (e.g. in the img/ folder)
+are © Desi Susanti, all rights reserved, and may not be reused
+without permission.
+
+The background music in audio/ was generated with an AI music
+tool and is used under that tool's terms of service. It is not
+covered by this license.
+
 The interactive 3D portfolio concept was inspired by Bruno Simon
 (bruno-simon.com); no code from his project is included.
+
 The bundled Three.js library in vendor/ remains under its own
 license (see vendor/THREE_LICENSE.txt).
