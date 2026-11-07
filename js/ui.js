@@ -162,7 +162,8 @@ function renderBoard() {
   } else if (board.mode === 'blog') {
     if (board.post) return; // sedang membaca, isi diatur readPost
     title.textContent = t(L.title);
-    media.innerHTML = `<div class="bd-icon">${{ kode: '💻', kuliner: '🍜', 'jalan-jalan': '🧳' }[L.blog] || '📝'}</div>`;
+    media.innerHTML = L.blog === 'kode' ? '<img src="img/blog-kode.jpg" alt="">'
+      : `<div class="bd-icon">${{ kode: '💻', kuliner: '🍜', 'jalan-jalan': '🧳' }[L.blog] || '📝'}</div>`;
     const list = board.posts;
     const own = admin.isOwner();
     text.innerHTML = (list.length ? '<div class="cards">' + list.map((p, k) =>

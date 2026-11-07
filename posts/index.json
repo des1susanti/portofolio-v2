@@ -1,6 +1,48 @@
 [
   {
     "cat": "kode",
+    "date": "2026-11-07",
+    "file": "kode/github-profile-readme.md",
+    "title": {
+      "id": "GitHub Profile README: Halaman Profil yang Hidup",
+      "en": "GitHub Profile README: A Living Profile Page"
+    },
+    "summary": {
+      "id": "Profil GitHub dengan SVG beranimasi dan grafik yang diperbarui otomatis.",
+      "en": "A GitHub profile with animated SVGs and auto-updating graphs."
+    },
+    "cover": "img/proyek/github-profile.jpg"
+  },
+  {
+    "cat": "kode",
+    "date": "2026-11-07",
+    "file": "kode/scientific-calculator.md",
+    "title": {
+      "id": "Scientific Calculator: Kalkulator Ilmiah dalam Satu File",
+      "en": "Scientific Calculator: A Single-File Scientific Calculator"
+    },
+    "summary": {
+      "id": "Kalkulator ilmiah bergaya dark glassmorphism dengan JavaScript murni.",
+      "en": "A dark-glassmorphism scientific calculator in vanilla JavaScript."
+    },
+    "cover": "img/proyek/scicalc.jpg"
+  },
+  {
+    "cat": "kode",
+    "date": "2026-11-07",
+    "file": "kode/presensi-flutter.md",
+    "title": {
+      "id": "Presensi Flutter: Absen WFO/WFH dengan Geofencing dan Verifikasi Wajah",
+      "en": "Presensi Flutter: WFO/WFH Attendance with Geofencing and Face Verification"
+    },
+    "summary": {
+      "id": "Aplikasi presensi kampus berbasis Flutter dan Firebase.",
+      "en": "A campus attendance app built with Flutter and Firebase."
+    },
+    "cover": "img/proyek/presensi.jpg"
+  },
+  {
+    "cat": "kode",
     "date": "2026-10-31",
     "file": "kode/robot-gestur.md",
     "cover": "img/proyek/robot.jpg",

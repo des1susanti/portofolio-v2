@@ -10,7 +10,7 @@
 
 export const PROFILE = {
   name: "DESI SUSANTI",
-  tagline: { id: "Pembelajar | Pendidik | Peneliti", en: "Learner | Educator | Researcher" },
+  tagline: { id: "Dosen | Peneliti AI | Pengembang Perangkat Lunak", en: "Lecturer | AI Researcher | Software Developer" },
   quote: {
     id: "Rasa ingin tahu adalah awal dari setiap algoritma, dan pembelajaran adalah fondasi dari setiap inovasi.",
     en: "Curiosity is the beginning of every algorithm, and learning is the foundation of every innovation.",
@@ -86,6 +86,18 @@ export const PROJECTS = [
     role: T("Pembuat", "Creator"), with: "Three.js · JavaScript · GitHub Pages",
     desc: T("Portofolio 3D interaktif ini: jalankan robot kecil berkeliling kampus mini, masuk ke gedung-gedung, memancing, membaca buku, dan mengganti warna robot. Kunjungi di des1susanti.github.io/portofolio-v2.",
             "This interactive 3D portfolio: drive a little robot around a mini campus, enter buildings, go fishing, read books and repaint the robot. Visit at des1susanti.github.io/portofolio-v2.") },
+  { name: "Presensi Flutter", url: gh("presensi-flutter"), img: "img/proyek/presensi.jpg", tag: "MOBILE",
+    role: T("Pembuat", "Creator"), with: "Flutter · Dart · Firebase",
+    desc: T("Aplikasi presensi WFO/WFH untuk perguruan tinggi, dilengkapi geofencing, deteksi Fake GPS, dan verifikasi wajah.",
+            "A WFO/WFH attendance app for universities, with geofencing, fake-GPS detection and face verification.") },
+  { name: "Scientific Calculator", url: gh("scientific-calculator"), img: "img/proyek/scicalc.jpg", tag: "WEB",
+    role: T("Pembuat", "Creator"), with: "HTML · CSS · JavaScript",
+    desc: T("Kalkulator ilmiah modern dengan tampilan dark glassmorphism, dibuat dengan HTML, CSS, dan JavaScript murni dalam satu file.",
+            "A modern scientific calculator with a dark glassmorphism UI, built with HTML, CSS and vanilla JavaScript in a single file.") },
+  { name: "GitHub Profile README", url: gh("des1susanti"), img: "img/proyek/github-profile.jpg", tag: "WEB",
+    role: T("Pembuat", "Creator"), with: "SVG · Markdown · GitHub Actions",
+    desc: T("Halaman profil GitHub beranimasi: banner ilustrasi, kartu proyek, kartu riset, serta grafik kontribusi 3D dan animasi ular yang diperbarui otomatis setiap hari lewat GitHub Actions.",
+            "An animated GitHub profile page: an illustrated banner, project and research cards, plus a 3D contribution graph and snake animation refreshed daily by GitHub Actions.") },
   { name: "Portofolio v1", url: gh("flask-tailwind-portofolio"), img: "img/v1/dsi.jpg", tag: "WEB",
     role: T("Pembuat", "Creator"), with: "Flask · Tailwind CSS",
     desc: T("Versi pertama portofolio ini, dengan dua bahasa dan galeri foto. Masih bisa dikunjungi di des1susanti.pythonanywhere.com.",
@@ -133,15 +145,15 @@ export const LOCATIONS = [
 
   { no: 2, key: "beranda", px: 455, py: 375, mx: 455, my: 470, door: { face: 1, d: 7, w: 3.2 },
     title: T("Gedung Beranda", "Home Hall"),
-    notes: T(["👩‍🏫 Desi Susanti, M.Kom", "✨ Pembelajar | Pendidik | Peneliti", "📖 Cerita lengkap tentang saya"],
-             ["👩‍🏫 Desi Susanti, M.Kom", "✨ Learner | Educator | Researcher", "📖 My full story"]),
+    notes: T(["👩‍🏫 Desi Susanti, M.Kom", "✨ Dosen | Peneliti AI | Pengembang Perangkat Lunak", "📖 Cerita lengkap tentang saya"],
+             ["👩‍🏫 Desi Susanti, M.Kom", "✨ Lecturer | AI Researcher | Software Developer", "📖 My full story"]),
     slides: [
       { title: T("Hey there! I'm Desi Susanti"), img: "img/v1/about-main.jpg",
         text: T(`<blockquote>"Rasa ingin tahu adalah awal dari setiap algoritma, dan pembelajaran adalah fondasi dari setiap inovasi."</blockquote>
                 <p>Saya akademisi dan pendidik di bidang Ilmu Komputer, dengan fokus pada pengembangan <b>Artificial Intelligence</b> untuk pemodelan dan analisis data kompleks.</p>`,
                 `<blockquote>"Curiosity is the beginning of every algorithm, and learning is the foundation of every innovation."</blockquote>
                 <p>I am an academic and educator in Computer Science, focusing on <b>Artificial Intelligence</b> for modeling and analysing complex data.</p>`),
-        meta: [{ k: T("PERAN", "ROLE"), v: T("Pembelajar · Pendidik · Peneliti", "Learner · Educator · Researcher") }] },
+        meta: [{ k: T("PERAN", "ROLE"), v: T("Dosen · Peneliti AI · Pengembang Perangkat Lunak", "Lecturer · AI Researcher · Software Developer") }] },
       { title: T("Cerita Saya", "My Story"), img: "img/v1/utama.jpg",
         text: T(`<p>Saya berfokus pada pengembangan pemodelan komputasi dan analisis data untuk mendukung pengambilan keputusan yang lebih tepat dan berbasis data.</p>
                 <p>Penelitian saya berorientasi pada penguatan metodologi analitik, integrasi berbagai pendekatan komputasi, serta optimalisasi pengolahan data yang kompleks.</p>
@@ -180,8 +192,8 @@ export const LOCATIONS = [
 
   { no: 5, key: "lab", px: 930, py: 375, mx: 930, my: 470, door: { face: 1, d: 7, w: 3 },
     title: T("Lab AI", "AI Lab"),
-    notes: T(["📄 Publikasi: ANN vs SVR — Jurnal INFOTEL 2024", "🔬 Riset: Orange Data Mining", "🧠 Keahlian: Deep Learning, Neural Network, SVR"],
-             ["📄 Paper: ANN vs SVR — Jurnal INFOTEL 2024", "🔬 Research: Orange Data Mining", "🧠 Skills: Deep Learning, Neural Networks, SVR"]),
+    notes: T(["📄 Publikasi: ANN vs SVR — Jurnal INFOTEL 2024", "🔬 Riset: Orange Data Mining", "🌿 Skripsi S1: Sistem Pakar Aglaonema (Certainty Factor)", "🧠 Keahlian: Deep Learning, Neural Network, SVR"],
+             ["📄 Paper: ANN vs SVR — Jurnal INFOTEL 2024", "🔬 Research: Orange Data Mining", "🌿 Undergraduate thesis: Aglaonema Expert System (Certainty Factor)", "🧠 Skills: Deep Learning, Neural Networks, SVR"]),
     slides: [
       { title: T("Jurnal INFOTEL · 2024"), img: "img/v1/research_thumb.jpg",
         link: { label: "doi.org/10.20895/infotel.v16i3.1163", url: "https://doi.org/10.20895/infotel.v16i3.1163" },
@@ -189,8 +201,13 @@ export const LOCATIONS = [
                 <p>Studi komparatif ANN dan SVR untuk memprediksi capaian prestasi siswa dengan akurasi tinggi.</p>`,
                 `<h3>Prediction of Student Achievement Using Artificial Neural Network and Support Vector Regression</h3>
                 <p>A comparative study of ANN and SVR to predict student achievement with high accuracy.</p>`),
-        meta: [{ k: T("PERAN", "ROLE"), v: T("Peneliti", "Researcher") }, { k: T("METODE", "METHOD"), v: T("ANN · SVR") }], badge: "PUBLIKASI" },
-      ...projectSlides((p) => p.tag === "PUBLISHED RESEARCH"),
+        meta: [{ k: T("PERAN", "ROLE"), v: T("Peneliti", "Researcher") }, { k: T("METODE", "METHOD"), v: T("ANN · SVR") }, { k: T("ALAT", "TOOLS"), v: T("Orange Data Mining") }], badge: "PUBLIKASI" },
+      { title: T("Skripsi S1", "Undergraduate Thesis"), icon: "🌿",
+        text: T(`<h3>Sistem Pakar Diagnosa Penyakit Tanaman Hias Aglaonema Menggunakan Metode Certainty Factor</h3>
+                <p>Sistem pakar berbasis aturan yang membantu mendiagnosis penyakit tanaman hias Aglaonema dari gejala yang dipilih pengguna, dengan tingkat keyakinan dihitung menggunakan metode <b>Certainty Factor</b>.</p>`,
+                `<h3>Expert System for Diagnosing Aglaonema Ornamental Plant Diseases Using the Certainty Factor Method</h3>
+                <p>A rule-based expert system that helps diagnose Aglaonema ornamental plant diseases from the symptoms a user selects, with confidence calculated using the <b>Certainty Factor</b> method.</p>`),
+        meta: [{ k: T("PERAN", "ROLE"), v: T("Peneliti", "Researcher") }, { k: T("METODE", "METHOD"), v: T("Sistem Pakar · Certainty Factor", "Expert System · Certainty Factor") }], badge: "SKRIPSI" },
       { title: T("Keahlian & Kompetensi", "Skills"), icon: "🧠",
         text: T(`<ul><li><b>Artificial Intelligence & ML</b> — Deep Learning, Neural Networks, Predictive Modeling</li>
                 <li><b>Computational Modeling</b> — SVR, Optimization Algorithms, Simulation</li>
@@ -201,8 +218,8 @@ export const LOCATIONS = [
 
   { no: 6, key: "galeri", px: 1150, py: 380, mx: 1150, my: 480, door: null,
     title: T("Galeri Proyek", "Project Gallery"),
-    notes: T(["✋ Computer vision: Mitologi, Mesin 3D, Robot Gestur, Nebula Hands, AI Vision", "🎮 Game: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Portofolio v1", "🥭 Animasi Pohon Mangga · 🧮 C# · 🐒 Alice"],
-             ["✋ Computer vision: Mitologi, Engine 3D, Gesture Robot, Nebula Hands, AI Vision", "🎮 Games: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Portfolio v1", "🥭 Mango Tree animation · 🧮 C# · 🐒 Alice"]),
+    notes: T(["✋ Computer vision: Mitologi, Mesin 3D, Robot Gestur, Nebula Hands, AI Vision", "🎮 Game: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portofolio v1", "📱 Mobile: Presensi Flutter", "🥭 Animasi Pohon Mangga · 🧮 C# · 🐒 Alice"],
+             ["✋ Computer vision: Mitologi, Engine 3D, Gesture Robot, Nebula Hands, AI Vision", "🎮 Games: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portfolio v1", "📱 Mobile: Presensi Flutter", "🥭 Mango Tree animation · 🧮 C# · 🐒 Alice"]),
     slides: projectSlides((p) => p.tag !== "PUBLISHED RESEARCH") },
 
   { no: 7, key: "kelas", px: 925, py: 620, mx: 991, my: 695, door: { face: 1, d: 5.5, w: 2.6, dx: 6.6 },

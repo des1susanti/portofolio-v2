@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Desi Susanti — Portofolio</title>
-  <meta name="description" content="Portofolio Desi Susanti, M.Kom — Pembelajar | Pendidik | Peneliti">
+  <meta name="description" content="Portofolio Desi Susanti, M.Kom — Dosen | Peneliti AI | Pengembang Perangkat Lunak">
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root { --ink: #241726; --cream: #fbf3ea; --wood: #c9703f; --wood2: #b8623a; --rose: #e0567f; --violet: #9b59d0; --gold: #f1b434; --night: #170d12; }
@@ -253,6 +253,7 @@
       <section class="part dark" id="riset"><div class="reveal">${head(5, t(L.lab.title), t(L.lab.notes)[0])}
         <div class="split"><div class="card">${E('lab', 0, 'text', t(lab[0].text))}<p><a href="${lab[0].link.url}" target="_blank">📄 ${lab[0].link.label}</a></p></div>
         <img src="img/v1/research_thumb.jpg" alt="" style="width:100%;border-radius:16px"></div>
+        ${lab.map((s, i) => [s, i]).filter(([s]) => s.badge === 'SKRIPSI').map(([s, i]) => `<div class="card" style="margin-top:24px"><span class="chip">🌿 ${t(s.title)}</span>${E('lab', i, 'text', t(s.text))}</div>`).join('')}
         <h3 style="margin-top:40px">${lang === 'id' ? 'Keahlian & Kompetensi' : 'Skills'}</h3>
         <div class="skills">${[['🤖', 'AI & Machine Learning', 'Deep Learning, Neural Networks, Predictive Modeling'], ['📈', 'Computational Modeling', 'SVR, Optimization Algorithms, Simulation'],
           ['💻', 'Programming & Dev', 'Python, Flask, SQL, Web Development'], ['📊', 'Data Science', 'Pandas, NumPy, Scikit-Learn, Matplotlib'],
