@@ -80,4 +80,4 @@ Three.js · JavaScript · HTML · CSS · GitHub Pages
 
 ---
 
-Diadaptasi dari portofolio [Bruno Simon](https://bruno-simon.com) ([github.com/brunosimon](https://github.com/brunosimon)).
+Terinspirasi dari konsep portofolio interaktif [Bruno Simon](https://bruno-simon.com/) ([github.com/brunosimon](https://github.com/brunosimon)). Kode dikembangkan sendiri dengan bantuan AI, tanpa menyalin kode dari proyek tersebut.
