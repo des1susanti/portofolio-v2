@@ -95,10 +95,22 @@
     .strip img:hover { transform: scale(1.03) rotate(-1deg); }
 
     /* keahlian */
-    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .skill { padding: 22px; border-radius: 16px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.25); transition: transform .2s; }
     .skill:hover { transform: translateY(-6px) rotate(-1deg); }
     .skill b { display: block; font-size: 18px; margin-bottom: 6px; } .skill .e { font-size: 34px; }
+    .skill .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .skill .tags span { font-size: 13px; padding: 3px 10px; border-radius: 20px; background: rgba(241,180,52,.16); border: 1px solid rgba(241,180,52,.4); color: #ffe2a8; }
+    /* foto Tentang: dua foto bergaya polaroid */
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: center; padding: 20px 10px 40px; }
+    .duo .ph { background: #fff; padding: 10px 10px 34px; border-radius: 6px; box-shadow: 0 18px 40px rgba(36,23,38,.22); transition: transform .35s; }
+    .duo .ph img { cursor: zoom-in; display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; }
+    .duo .ph:nth-child(odd) { transform: rotate(-4deg) translateY(-14px); z-index: 2; margin-right: -24px; }
+    .duo .ph:nth-child(even) { transform: rotate(3.5deg) translateY(26px); z-index: 1; margin-left: -24px; }
+    .duo .ph:hover { transform: rotate(0) translateY(-6px) scale(1.03); z-index: 3; }
+    .duo .ph::after { content: ""; position: absolute; top: -10px; left: 50%; width: 70px; height: 22px; transform: translateX(-50%) rotate(-3deg);
+      background: rgba(241,180,52,.55); border-radius: 2px; }
+    @media (max-width: 860px) { .duo { padding: 10px 6px 34px; } }
 
     /* proyek: kartu balik */
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
@@ -192,7 +204,7 @@
   <div class="modal" id="lightbox"><button class="x">×</button><img id="lbimg" alt=""></div>
 
   <script type="module">
-    import { LOCATIONS, PROFILE, PROJECTS } from './js/content.js';
+    import { LOCATIONS, PROFILE, PROJECTS, SKILLS } from './js/content.js';
     import { md } from './js/markdown.js';
     import * as admin from './js/admin.js';
     admin.injectOwnerCSS(); admin.applyOwnerClass();
@@ -213,7 +225,7 @@
     let edits = await admin.loadEdits();
     // teks yang sudah diubah pemilik (data/edits.json), sama dengan yang dipakai Kampus 3D
     const E = (key, i, field, fallback) => { const e = edits[`${key}:${i}`] && edits[`${key}:${i}`][lang]; return e && e[field] != null ? e[field] : fallback; };
-    const ABOUT_PHOTOS = ['img/v1/about-main.jpg', 'img/v1/utama.jpg', 'img/v1/dsi.jpg'];
+    const ABOUT_PHOTOS = ['img/v1/about-main.jpg', 'img/v1/utama.jpg'];
     let localImgs = {};
     const src = (p) => localImgs[p] || p;
     let blogCat = 'kode', projFilter = 'ALL';
@@ -242,7 +254,7 @@
           <div class="card"><div id="ab-t0">${E('beranda', 0, 'text', t(ber[0].text))}</div><div id="ab-t1">${E('beranda', 1, 'text', t(ber[1].text))}</div></div>
           <div class="own ownbar"><button class="ownbtn" id="ab-edit">✎ Edit kata-kata</button><button class="ownbtn" id="ab-save" style="display:none">💾 Simpan</button>
             <button class="ownbtn ghost" id="ab-cancel" style="display:none">Batal</button></div></div>
-        <div class="photos"><div class="strip">${(edits['about-photos'] || ABOUT_PHOTOS).map((p, i) => `<div class="ph"><img src="${src(p)}" loading="lazy" alt="">
+        <div class="photos"><div class="duo">${(edits['about-photos'] || ABOUT_PHOTOS).map((p, i) => `<div class="ph"><img src="${src(p)}" loading="lazy" alt="">
           <button class="ownbtn own" data-rep="${i}">📷 Ganti</button></div>`).join('')}</div>
           <div class="own ownbar"><button class="ownbtn" id="ab-add">＋ Tambah foto</button><button class="ownbtn red" id="ab-del">🗑 Hapus foto terakhir</button></div></div></div></section>
 
@@ -255,9 +267,7 @@
         <img src="img/v1/research_thumb.jpg" alt="" style="width:100%;border-radius:16px"></div>
         ${lab.map((s, i) => [s, i]).filter(([s]) => s.badge === 'SKRIPSI').map(([s, i]) => `<div class="card" style="margin-top:24px"><span class="chip">🌿 ${t(s.title)}</span>${E('lab', i, 'text', t(s.text))}</div>`).join('')}
         <h3 style="margin-top:40px">${lang === 'id' ? 'Keahlian & Kompetensi' : 'Skills'}</h3>
-        <div class="skills">${[['🤖', 'AI & Machine Learning', 'Deep Learning, Neural Networks, Predictive Modeling'], ['📈', 'Computational Modeling', 'SVR, Optimization Algorithms, Simulation'],
-          ['💻', 'Programming & Dev', 'Python, Flask, SQL, Web Development'], ['📊', 'Data Science', 'Pandas, NumPy, Scikit-Learn, Matplotlib'],
-          ['✋', 'Computer Vision', 'OpenCV, MediaPipe']].map(([e, a, b]) => `<div class="skill"><div class="e">${e}</div><b>${a}</b>${b}</div>`).join('')}</div></div></section>
+        <div class="skills">${SKILLS.map((g) => `<div class="skill"><div class="e">${g.e}</div><b>${t(g.k)}</b><div class="tags">${g.items.map((x) => `<span>${x}</span>`).join('')}</div></div>`).join('')}</div></div></section>
 
       <section class="part" id="proyek"><div class="reveal">${head(6, t(L.galeri.title), t(W.flip))}
         <div class="filters">${cats.map((c) => `<button data-f="${c}" class="${c === projFilter ? 'on' : ''}">${c === 'ALL' ? t(W.all) : c}</button>`).join('')}</div>
@@ -307,7 +317,7 @@
         document.getElementById('modal').classList.add('show');
       }));
       bindOwnerAbout();
-      document.querySelectorAll('.strip img, .grid img').forEach((im) => (im.onclick = () => {
+      document.querySelectorAll('.strip img, .grid img, .duo img').forEach((im) => (im.onclick = () => {
         document.getElementById('lbimg').src = im.src; document.getElementById('lightbox').classList.add('show');
       }));
       const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && e.target.classList.add('in')), { threshold: 0.12 });

@@ -38,6 +38,14 @@ const T = (id, en) => ({ id, en: en ?? id });
 
 // ------------------------------------------------------------------ proyek (dipakai Galeri & mode biasa)
 export const PROJECTS = [
+  { name: "Rice Pest Detection (YOLOv8)", url: gh("rice-pest-yolov8"), img: "img/proyek/ricepest.jpg", tag: "COMPUTER VISION",
+    role: T("Pembuat", "Creator"), with: "Python · PyTorch · YOLOv8 · Google Colab",
+    desc: T("Deteksi 14 jenis hama padi dari dataset publik IP102 dengan YOLOv8. Model ringan YOLOv8n mencapai mAP@0,5 sebesar 0,753 dengan 4 ms per gambar dan ukuran 6,2 MB: akurasinya setara YOLOv8s, tetapi dua kali lebih cepat sehingga cocok untuk perangkat di lapangan.",
+            "Detecting 14 rice pest species from the public IP102 dataset with YOLOv8. The lightweight YOLOv8n reached mAP@0.5 of 0.753 at 4 ms per image and 6.2 MB: as accurate as YOLOv8s but twice as fast, making it suitable for field devices.") },
+  { name: "Student Achievement Prediction (ANN vs SVR)", url: gh("student-achievement-ann-svr"), img: "img/proyek/student-achievement-workflow.jpg", tag: "MACHINE LEARNING",
+    role: T("Peneliti", "Researcher"), with: "Orange Data Mining · ANN · SVR",
+    desc: T("Alur kerja Orange Data Mining dari penelitian S2 yang terbit di JURNAL INFOTEL (Sinta 2): membandingkan Artificial Neural Network dan Support Vector Regression untuk memprediksi prestasi siswa dari 550 data dengan 26 fitur akademik dan nonakademik.",
+            "The Orange Data Mining workflow from my master's research published in JURNAL INFOTEL (Sinta 2): comparing an Artificial Neural Network and Support Vector Regression to predict student achievement from 550 records with 26 academic and non-academic features.") },
   { name: "Mitologi Nusantara", url: gh("mitologi-nusantara"), img: "img/proyek/mitologi.jpg", tag: "COMPUTER VISION",
     role: T("Pembuat", "Creator"), with: "Python · OpenCV · MediaPipe",
     desc: T("Sebelas tokoh mitologi Nusantara muncul di dalam kubus 3D dan bergerak (sayap mengepak, api berkobar, naga terbang). Dikendalikan gerakan tangan lewat webcam: cubit untuk memunculkan kubus, kepal untuk asap, buka untuk tokoh.",
@@ -79,7 +87,7 @@ export const PROJECTS = [
     desc: T("Aplikasi pelaporan gangguan internet FTTH dengan empat peran (Admin, Manager, Teknisi, Pelanggan): pelanggan melapor dan memantau tiket, teknisi memperbarui status, manajer mengekspor laporan.",
             "An FTTH outage-reporting app with four roles (Admin, Manager, Technician, Customer): customers report and track tickets, technicians update status, managers export reports.") },
   { name: "ETL SAP ↔ iCRM+ Supply Chain", url: gh("etl-sap-icrm-supply-chain"), img: "img/proyek/etl.jpg", tag: "WEB",
-    role: T("Pembuat", "Creator"), with: "Laravel 11 · Python · MySQL",
+    role: T("Pembuat", "Creator"), with: "Laravel 11 · MySQL",
     desc: T("Sistem ETL dan rekonsiliasi data otomatis antara SAP dan iCRM+ untuk gudang: menandai selisih stok, kode barang hilang, dan membuat laporan audit (Excel/PDF).",
             "An automated ETL and data-reconciliation system between SAP and iCRM+ for warehouses: flags stock mismatches and missing item codes, and produces audit reports (Excel/PDF).") },
   { name: "Kampus Mini 3D (Portofolio v2)", url: gh("portofolio-v2"), img: "img/proyek/kampus3d.jpg", tag: "WEB",
@@ -106,18 +114,6 @@ export const PROJECTS = [
     role: T("Peneliti", "Researcher"), with: "Orange Data Mining",
     desc: T("Studi komparatif algoritma machine learning dengan Orange Data Mining untuk analisis prediktif, dipublikasikan di jurnal ilmiah nasional.",
             "A comparative study of machine-learning algorithms using Orange Data Mining for predictive analysis, published in a national journal.") },
-  { name: "Kalkulator GUI", url: "", img: "", icon: "🧮", tag: "SOFTWARE DEV",
-    role: T("Pembuat", "Creator"), with: "C# / .NET",
-    desc: T("Aplikasi kalkulator desktop berbasis GUI di Visual Studio Community dengan logika OOP.",
-            "A GUI desktop calculator built in Visual Studio Community using OOP logic.") },
-  { name: "Alien Defense System", url: "", img: "", icon: "👾", tag: "GAME",
-    role: T("Pembuat", "Creator"), with: "Java · Greenfoot",
-    desc: T("Permainan interaktif dengan algoritma collision detection dan manajemen siklus hidup objek.",
-            "An interactive game focusing on collision detection and object life-cycle management.") },
-  { name: "The Monkey King", url: "", img: "", icon: "🐒", tag: "3D MODELING",
-    role: T("Pembuat", "Creator"), with: "Alice 3D",
-    desc: T("Lingkungan virtual dan alur cerita interaktif dengan teknik logic branching.",
-            "A virtual environment and interactive story using logic branching.") },
 ];
 
 const projectSlides = (filter) => PROJECTS.filter(filter).map((p) => ({
@@ -126,6 +122,16 @@ const projectSlides = (filter) => PROJECTS.filter(filter).map((p) => ({
   meta: [{ k: T("PERAN", "ROLE"), v: p.role }, { k: T("DENGAN", "WITH"), v: T(p.with) }],
   badge: p.tag,
 }));
+
+// ------------------------------------------------------------------ keahlian (dipakai Lab AI & mode biasa)
+export const SKILLS = [
+  { e: "🤖", k: T("AI & Machine Learning"), items: ["Deep Learning", "Artificial Neural Network", "Support Vector Regression", "Sistem Pakar (Certainty Factor)"] },
+  { e: "👁️", k: T("Computer Vision"), items: ["YOLOv8", "OpenCV", "MediaPipe", "Google ML Kit"] },
+  { e: "🐍", k: T("Python & Data", "Python & Data"), items: ["Python", "PyTorch", "NumPy", "Jupyter", "Google Colab", "Orange Data Mining"] },
+  { e: "📱", k: T("Aplikasi Mobile", "Mobile Apps"), items: ["Flutter", "Dart", "Firebase", "Java (Android)"] },
+  { e: "🌐", k: T("Aplikasi Web", "Web Apps"), items: ["Laravel", "PHP", "MySQL", "Flask", "JavaScript", "Three.js", "HTML/CSS", "Tailwind CSS"] },
+  { e: "🛠️", k: T("Alat Kerja", "Tools"), items: ["Git & GitHub", "GitHub Actions", "Android Studio", "VS Code"] },
+];
 
 // ------------------------------------------------------------------ lokasi
 export const LOCATIONS = [
@@ -201,6 +207,8 @@ export const LOCATIONS = [
                 <p>Studi komparatif ANN dan SVR untuk memprediksi capaian prestasi siswa dengan akurasi tinggi.</p>`,
                 `<h3>Prediction of Student Achievement Using Artificial Neural Network and Support Vector Regression</h3>
                 <p>A comparative study of ANN and SVR to predict student achievement with high accuracy.</p>`),
+        links: [{ label: "DOI · 10.20895/infotel.v16i3.1163", url: "https://doi.org/10.20895/infotel.v16i3.1163", icon: "📄" },
+                { label: "GitHub · student-achievement-ann-svr", url: "https://github.com/des1susanti/student-achievement-ann-svr", icon: "🐙" }],
         meta: [{ k: T("PERAN", "ROLE"), v: T("Peneliti", "Researcher") }, { k: T("METODE", "METHOD"), v: T("ANN · SVR") }, { k: T("ALAT", "TOOLS"), v: T("Orange Data Mining") }], badge: "PUBLIKASI" },
       { title: T("Skripsi S1", "Undergraduate Thesis"), icon: "🌿",
         text: T(`<h3>Sistem Pakar Diagnosa Penyakit Tanaman Hias Aglaonema Menggunakan Metode Certainty Factor</h3>
@@ -208,18 +216,16 @@ export const LOCATIONS = [
                 `<h3>Expert System for Diagnosing Aglaonema Ornamental Plant Diseases Using the Certainty Factor Method</h3>
                 <p>A rule-based expert system that helps diagnose Aglaonema ornamental plant diseases from the symptoms a user selects, with confidence calculated using the <b>Certainty Factor</b> method.</p>`),
         meta: [{ k: T("PERAN", "ROLE"), v: T("Peneliti", "Researcher") }, { k: T("METODE", "METHOD"), v: T("Sistem Pakar · Certainty Factor", "Expert System · Certainty Factor") }], badge: "SKRIPSI" },
-      { title: T("Keahlian & Kompetensi", "Skills"), icon: "🧠",
-        text: T(`<ul><li><b>Artificial Intelligence & ML</b> — Deep Learning, Neural Networks, Predictive Modeling</li>
-                <li><b>Computational Modeling</b> — SVR, Optimization Algorithms, Simulation</li>
-                <li><b>Programming & Dev</b> — Python, Flask, SQL, Web Development</li>
-                <li><b>Data Science</b> — Pandas, NumPy, Scikit-Learn, Matplotlib</li>
-                <li><b>Computer Vision</b> — OpenCV, MediaPipe (proyek gestur tangan)</li></ul>`) },
+      { title: T("Keahlian & Kompetensi", "Skills & Competencies"), icon: "🧠", kind: "skills", badge: "KEAHLIAN",
+        skills: SKILLS,
+        text: T(SKILLS.map((g) => `<p><b>${g.e} ${g.k.id}</b> — ${g.items.join(", ")}</p>`).join(""),
+                SKILLS.map((g) => `<p><b>${g.e} ${g.k.en}</b> — ${g.items.join(", ")}</p>`).join("")) },
     ] },
 
   { no: 6, key: "galeri", px: 1150, py: 380, mx: 1150, my: 480, door: null,
     title: T("Galeri Proyek", "Project Gallery"),
-    notes: T(["✋ Computer vision: Mitologi, Mesin 3D, Robot Gestur, Nebula Hands, AI Vision", "🎮 Game: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portofolio v1", "📱 Mobile: Presensi Flutter", "🥭 Animasi Pohon Mangga · 🧮 C# · 🐒 Alice"],
-             ["✋ Computer vision: Mitologi, Engine 3D, Gesture Robot, Nebula Hands, AI Vision", "🎮 Games: Luwing, Life Design Quest, Alien Defense", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portfolio v1", "📱 Mobile: Presensi Flutter", "🥭 Mango Tree animation · 🧮 C# · 🐒 Alice"]),
+    notes: T(["🧠 AI: Deteksi Hama Padi (YOLOv8), Prediksi Prestasi Siswa (ANN vs SVR)", "✋ Computer vision: Mitologi, Mesin 3D, Robot Gestur, Nebula Hands, AI Vision", "🎮 Game: Luwing, Life Design Quest", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portofolio v1", "📱 Mobile: Presensi Flutter", "🥭 Animasi Pohon Mangga"],
+             ["🧠 AI: Rice Pest Detection (YOLOv8), Student Achievement Prediction (ANN vs SVR)", "✋ Computer vision: Mitologi, Engine 3D, Gesture Robot, Nebula Hands, AI Vision", "🎮 Games: Luwing, Life Design Quest", "🌐 Web: FTTH, ETL SAP–iCRM+, Mail Merge Quiz, Scientific Calculator, GitHub Profile, Portfolio v1", "📱 Mobile: Presensi Flutter", "🥭 Mango Tree animation"]),
     slides: projectSlides((p) => p.tag !== "PUBLISHED RESEARCH") },
 
   { no: 7, key: "kelas", px: 925, py: 620, mx: 991, my: 695, door: { face: 1, d: 5.5, w: 2.6, dx: 6.6 },
@@ -228,9 +234,17 @@ export const LOCATIONS = [
              ["👩‍🏫 Teaching Computer Science", "🧩 Programming & AI", "✎ Course list is editable"]),
     slides: [
       { title: T("Mengajar", "Teaching"), icon: "👩‍🏫",
-        text: T(`<p>Sebagai pendidik, saya ingin kelas menjadi tempat yang mendorong <b>pemikiran kritis</b> dan <b>kemandirian intelektual</b>.</p>
+        text: T(`<p class="lead">"Kelas yang baik adalah tempat bertanya tanpa takut salah."</p>
+                <p>Sebagai pendidik, saya ingin kelas menjadi tempat yang mendorong <b>pemikiran kritis</b> dan <b>kemandirian intelektual</b>.</p>
+                <div class="pillars"><div><i>🧠</i><b>Berpikir kritis</b><span>Memahami "mengapa", bukan hanya "bagaimana".</span></div>
+                <div><i>🛠️</i><b>Belajar lewat proyek</b><span>Setiap konsep diuji lewat karya nyata.</span></div>
+                <div><i>🤝</i><b>Tumbuh bersama</b><span>Berbagi, berdiskusi, dan saling membantu.</span></div></div>
                 <p>Mata kuliah yang diampu:</p><ul><li>(tambahkan mata kuliah — tekan ✎)</li></ul>`,
-                `<p>As an educator I want classrooms that encourage <b>critical thinking</b> and <b>intellectual independence</b>.</p>
+                `<p class="lead">"A good classroom is a place to ask questions without fear of being wrong."</p>
+                <p>As an educator I want classrooms that encourage <b>critical thinking</b> and <b>intellectual independence</b>.</p>
+                <div class="pillars"><div><i>🧠</i><b>Critical thinking</b><span>Understanding "why", not only "how".</span></div>
+                <div><i>🛠️</i><b>Learning by building</b><span>Every concept is tested through real work.</span></div>
+                <div><i>🤝</i><b>Growing together</b><span>Sharing, discussing and helping each other.</span></div></div>
                 <p>Courses taught:</p><ul><li>(add courses — press ✎)</li></ul>`) },
     ] },
 
@@ -279,13 +293,32 @@ export const LOCATIONS = [
 
   { no: 14, key: "bengkel", px: 1365, py: 705, mx: 1365, my: 625, door: { face: -1, d: 6, w: 3.4 },
     title: T("Bengkel Cat Robot", "Robot Paint Shop"),
-    notes: T(["🎨 Ganti warna robot", "10 pilihan warna, termasuk pink"], ["🎨 Change the robot's colour", "10 colours, including pink"]),
+    notes: T(["🎨 Ganti warna robot", "28 pilihan warna + pelangi warna bebas"], ["🎨 Change the robot's colour", "28 colours + a free-colour rainbow"]),
     paint: true },
 
   { no: 15, key: "siger", px: 1360, py: 400, mx: 1360, my: 495, door: null,
     title: T("Menara Siger", "Siger Tower"),
     notes: T(["👑 Ikon Provinsi Lampung", "🛠️ Tentang situs ini"], ["👑 Icon of Lampung Province", "🛠️ About this site"]),
-    slides: [{ title: T("Menara Siger"), icon: "👑",
+    slides: [
+      { title: T("Siger, Lambang Lampung", "Siger, the Symbol of Lampung"), img: "img/lampung/siger.svg",
+        text: T(`<p><b>Siger</b> adalah mahkota adat berwarna emas yang dikenakan perempuan Lampung pada upacara adat. Bentuknya yang berlekuk tujuh atau sembilan menjadi lambang Provinsi Lampung dan bisa ditemui di gapura, kantor, hingga logo daerah.</p>`,
+                `<p>The <b>siger</b> is a golden traditional crown worn by Lampung women at customary ceremonies. Its seven or nine curves became the symbol of Lampung Province, seen on gates, offices and regional logos.</p>`) },
+      { title: T("Menara Siger", "Siger Tower"), img: "img/lampung/menara-siger.svg",
+        text: T(`<p>Berdiri di bukit Bakauheni, Lampung Selatan, dekat pelabuhan penyeberangan dari Pulau Jawa. Atapnya bersusun menyerupai siger, sehingga menara ini menjadi penanda "gerbang" Pulau Sumatra bagi para pelancong.</p>`,
+                `<p>It stands on a hill at Bakauheni, South Lampung, near the ferry port from Java. Its tiered roof is shaped like a siger, making it the landmark "gateway" to Sumatra for travellers.</p>`) },
+      { title: T("Provinsi Lampung", "Lampung Province"), img: "img/lampung/siger.svg", layout: "side",
+        text: T(`<p>Lampung berada di ujung selatan Pulau Sumatra dan resmi menjadi provinsi pada <b>18 Maret 1964</b>, setelah sebelumnya bagian dari Sumatra Selatan.</p>
+                <p>Semboyannya <b>"Sai Bumi Ruwa Jurai"</b>: satu bumi yang dihuni dua kelompok masyarakat adat, Saibatin dan Pepadun.</p>
+                <ul><li>☕ Penghasil kopi robusta</li><li>🐘 Taman Nasional Way Kambas, rumah gajah sumatra</li><li>🧵 Kain tapis, tenun khas Lampung</li><li>🌋 Dekat Gunung Anak Krakatau di Selat Sunda</li></ul>`,
+                `<p>Lampung lies at the southern tip of Sumatra and became a province on <b>18 March 1964</b>, after previously being part of South Sumatra.</p>
+                <p>Its motto <b>"Sai Bumi Ruwa Jurai"</b> means one land shared by two indigenous groups, Saibatin and Pepadun.</p>
+                <ul><li>☕ Robusta coffee country</li><li>🐘 Way Kambas National Park, home of Sumatran elephants</li><li>🧵 Tapis, Lampung's woven cloth</li><li>🌋 Close to Anak Krakatau in the Sunda Strait</li></ul>`) },
+      { title: T("Bandar Lampung"), img: "img/lampung/bandar-lampung.svg", layout: "side",
+        text: T(`<p>Ibu kota Provinsi Lampung dan kota terbesarnya, terletak di tepi <b>Teluk Lampung</b>. Kota ini lahir dari gabungan Tanjungkarang dan Telukbetung, dan memakai nama Bandar Lampung sejak 1983.</p>
+                <p>Hari jadinya diperingati setiap <b>17 Juni</b>, merujuk pada tahun 1682. Di kota inilah portofolio ini dibuat. 🏠</p>`,
+                `<p>The capital and largest city of Lampung Province, on the shore of <b>Lampung Bay</b>. It was formed from Tanjungkarang and Telukbetung, and has been called Bandar Lampung since 1983.</p>
+                <p>Its anniversary is celebrated every <b>17 June</b>, dating back to 1682. This portfolio was made here. 🏠</p>`) },
+      { title: T("Tentang Situs Ini", "About This Site"), icon: "👑",
       text: T(`<p>Mahkota siger adalah lambang Provinsi Lampung.</p><p class="muted">Portofolio v2 · Three.js · tanpa server · dibuat dengan bantuan AI.<br>Versi pertama: <a href="https://des1susanti.pythonanywhere.com" target="_blank">des1susanti.pythonanywhere.com</a></p>`,
               `<p>The siger crown is the symbol of Lampung Province.</p><p class="muted">Portfolio v2 · Three.js · serverless · AI-assisted.<br>First version: <a href="https://des1susanti.pythonanywhere.com" target="_blank">des1susanti.pythonanywhere.com</a></p>`) }] },
 
@@ -293,9 +326,9 @@ export const LOCATIONS = [
     title: T("Taman Danau", "Lake Garden"),
     notes: T(["🎣 Memancing di dermaga", "📚 Membaca buku di bangku taman", "💎 Ada permata tersembunyi…"],
              ["🎣 Fishing on the pier", "📚 Reading on the garden bench", "💎 A hidden gem somewhere…"]),
-    slides: [{ title: T("Taman Danau", "Lake Garden"), icon: "🌿",
-      text: T(`<p>Tempat santai di tepi danau.</p><ul><li>🎣 Datangi <b>dermaga</b> untuk memancing.</li><li>📚 Duduk di <b>bangku</b> untuk membaca.</li></ul>`,
-              `<p>A relaxing spot by the lake.</p><ul><li>🎣 Walk onto the <b>pier</b> to fish.</li><li>📚 Sit on the <b>bench</b> to read.</li></ul>`) }] },
+    slides: [{ title: T("Taman Danau", "Lake Garden"), img: "img/taman-danau.svg",
+      text: T(`<p>Tempat santai di tepi danau.</p><div class="pillars"><div><i>🎣</i><b>Memancing</b><span>Datangi <b>dermaga</b> untuk memancing.</span></div><div><i>📚</i><b>Membaca</b><span>Duduk di <b>bangku</b> untuk membaca.</span></div></div>`,
+              `<p>A relaxing spot by the lake.</p><div class="pillars"><div><i>🎣</i><b>Fishing</b><span>Walk onto the <b>pier</b> to fish.</span></div><div><i>📚</i><b>Reading</b><span>Sit on the <b>bench</b> to read.</span></div></div>`) }] },
 ];
 
 // rak buku di bangku taman (bisa diedit dengan ✎)
@@ -324,7 +357,7 @@ export const UI = {
   read: T("Baca", "Read"), noPosts: T("Belum ada tulisan.", "No posts yet."),
   teleport: T("Klik penanda untuk pindah ke sana", "Click a marker to go there"),
   contactIntro: T("Kirim pesan lewat:", "Get in touch via:"),
-  paintIntro: T("Pilih warna untuk robotmu. Warnanya diingat di browser ini.", "Pick a colour for your robot. It is remembered in this browser."),
+  paintIntro: T("Pilih warna untuk robotmu, atau geser pelangi untuk warna bebas. Warnanya diingat di browser ini.", "Pick a colour for your robot, or slide along the rainbow for any colour. It is remembered in this browser."),
   edit: T("Edit teks", "Edit text"), save: T("Simpan", "Save"), cancel: T("Batal", "Cancel"),
   editSaved: T("Tersimpan ke GitHub ✓ — situs untuk pengunjung diperbarui ±1 menit.", "Saved to GitHub ✓ — the public site updates in about a minute."),
   deleted: T("Tulisan dihapus ✓ — situs diperbarui ±1 menit.", "Post deleted ✓ — the site updates in about a minute."),
@@ -350,6 +383,24 @@ export const COLORS = [
   { name: T("Oranye", "Orange"), hex: "#ff8a3d" },
   { name: T("Putih", "White"), hex: "#f2f2f2" },
   { name: T("Hitam", "Black"), hex: "#2b2b2b" },
+  { name: T("Merah Marun", "Maroon"), hex: "#8e2440" },
+  { name: T("Koral", "Coral"), hex: "#ff7f6e" },
+  { name: T("Peach"), hex: "#ffb38a" },
+  { name: T("Emas", "Gold"), hex: "#d4a72c" },
+  { name: T("Lemon"), hex: "#fff06a" },
+  { name: T("Hijau Daun", "Lime"), hex: "#9be15d" },
+  { name: T("Hijau Tua", "Forest"), hex: "#1e7a4a" },
+  { name: T("Mint"), hex: "#7ee8c8" },
+  { name: T("Biru Langit", "Sky Blue"), hex: "#5bc8f5" },
+  { name: T("Biru Dongker", "Navy"), hex: "#1f3a7a" },
+  { name: T("Indigo"), hex: "#5b4fd6" },
+  { name: T("Lavender"), hex: "#c3a6ff" },
+  { name: T("Magenta"), hex: "#d63ca8" },
+  { name: T("Merah Muda", "Baby Pink"), hex: "#ffc2dc" },
+  { name: T("Cokelat", "Brown"), hex: "#8a5a3c" },
+  { name: T("Krem", "Cream"), hex: "#f3e3c3" },
+  { name: T("Abu-abu", "Grey"), hex: "#8f96a3" },
+  { name: T("Perak", "Silver"), hex: "#c9ced6" },
 ];
 
 export { gh };

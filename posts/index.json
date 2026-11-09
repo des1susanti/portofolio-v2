@@ -1,6 +1,34 @@
 [
   {
     "cat": "kode",
+    "date": "2026-11-09",
+    "file": "kode/rice-pest-yolov8.md",
+    "title": {
+      "id": "Rice Pest Detection: Mendeteksi 14 Jenis Hama Padi dengan YOLOv8",
+      "en": "Rice Pest Detection: Detecting 14 Rice Pest Species with YOLOv8"
+    },
+    "summary": {
+      "id": "Membandingkan YOLOv8n dan YOLOv8s pada dataset IP102: model ringan, akurasi setara.",
+      "en": "Comparing YOLOv8n and YOLOv8s on IP102: a lightweight model with equal accuracy."
+    },
+    "cover": "img/proyek/ricepest.jpg"
+  },
+  {
+    "cat": "kode",
+    "date": "2026-11-09",
+    "file": "kode/student-achievement-ann-svr.md",
+    "title": {
+      "id": "Prediksi Prestasi Siswa dengan ANN dan SVR di Orange Data Mining",
+      "en": "Predicting Student Achievement with ANN and SVR in Orange Data Mining"
+    },
+    "summary": {
+      "id": "Alur kerja penelitian S2 yang terbit di JURNAL INFOTEL (Sinta 2).",
+      "en": "The workflow behind my master's research published in JURNAL INFOTEL (Sinta 2)."
+    },
+    "cover": "img/proyek/student-achievement.jpg"
+  },
+  {
+    "cat": "kode",
     "date": "2026-11-07",
     "file": "kode/github-profile-readme.md",
     "title": {

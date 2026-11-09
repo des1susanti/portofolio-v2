@@ -173,6 +173,105 @@ body.in-board #labels, body.in-board #notifs { display: none; }
 .bd-text .draft { font-style: normal; font-size: 11px; background: #f1b434; color: #3b2400; padding: 1px 6px; border-radius: 6px; }
 .write-btn { display: inline-block; margin-top: 12px; padding: 8px 16px; background: #9b59d0; color: #fff !important; border-radius: 8px; text-decoration: none; }
 #board.photo .bd-screen { grid-template-columns: 1fr; }
+/* Papan tengah (Galeri, Lab AI, Auditorium, Masjid, Kelas, Prestasi, Menara Siger, Taman): gambar di atas, tulisan di bawah */
+#board.center .bd-screen { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; align-items: center;
+  gap: 16px; padding: 20px 26px; text-align: center; }
+#board.center .bd-media { width: 100%; height: 100%; position: relative; min-height: 120px; }
+#board.center .bd-media > img { position: absolute; inset: 0; margin: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.08), 0 14px 34px rgba(0,0,0,.55); }
+#board.center .bd-text { max-width: 640px; max-height: calc(min(52vh, 430px) * .46); font-size: 15px; line-height: 1.6; padding: 0 6px; }
+#board.center .bd-text h3 { margin-top: 0; }
+#board.center .bd-text { width: 100%; }
+#board.center.kind-side .bd-screen { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr; text-align: left; gap: 24px; }
+#board.center.kind-side .bd-text { max-height: 100%; align-self: center; }
+#board.center.kind-side .bd-text ul { display: block; padding-left: 4px; list-style: none; }
+#board.center .bd-text .pillars { margin: 8px 0; }
+#board.center .bd-text p { margin: 6px 0; }
+#board.center .bd-text ul { display: inline-block; text-align: left; margin: 4px 0; }
+/* ikon besar dalam lingkaran bercahaya */
+#board.center.kind-iconic .bd-media { height: auto; min-height: 0; }
+#board.center.kind-iconic .bd-icon { width: 120px; height: 120px; display: grid; place-items: center; font-size: 66px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,214,168,.22), rgba(255,214,168,0) 70%); box-shadow: inset 0 0 0 2px rgba(255,214,168,.25); }
+#board.center.kind-iconic .bd-screen { grid-template-rows: auto minmax(0, 1fr); align-content: center; }
+#board.center.kind-iconic .bd-text { max-height: 100%; align-self: start; height: 100%; }
+/* kutipan (Masjid) */
+#board.kind-quote .bd-text blockquote.big { border: 0; background: none; font-size: 24px; padding: 6px 10px; position: relative; color: #ffe6c7; }
+#board.kind-quote .bd-text blockquote.big::before { content: "❝"; display: block; font-size: 46px; line-height: 1; color: #f1b434; font-style: normal; margin-bottom: 4px; }
+/* tautan (DOI, GitHub) */
+.linkrow { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
+.linkrow a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 30px; text-decoration: none; font-size: 13px;
+  background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,178,224,.5); color: #ffd6f0 !important; font-weight: 700; }
+.linkrow a:hover { background: rgba(255,178,224,.18); }
+/* tiga pilar (Ruang Kelas, Taman) */
+.bd-text .lead { font-family: Georgia, serif; font-style: italic; font-size: 19px; color: #ffe6c7; margin: 0 0 8px; }
+.bd-text .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 12px 0; text-align: center; }
+.bd-text .pillars div { background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,214,168,.22); border-radius: 12px; padding: 12px 10px; }
+.bd-text .pillars i { display: block; font-style: normal; font-size: 26px; }
+.bd-text .pillars b { display: block; color: #ffd6a8; margin: 4px 0 2px; }
+.bd-text .pillars span { font-size: 13.5px; color: #e6d6df; line-height: 1.45; display: block; }
+.bd-text .pillars span b { display: inline; color: #fff; margin: 0; }
+#board.center.kind-iconic .bd-text ul { list-style: none; padding: 0; }
+/* kolase foto (Auditorium, Prestasi) */
+#board.kind-mosaicbox .bd-media { overflow: hidden; }
+.mosaic { display: grid; gap: 6px; width: 100%; height: 100%; }
+.mosaic img { width: 100% !important; height: 100% !important; max-height: none !important; object-fit: cover; border-radius: 8px !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.45) !important; cursor: zoom-in; }
+.mosaic.n1 { grid-template-columns: 1fr; } .mosaic.n1 img { object-fit: contain; }
+.mosaic.n2 { grid-template-columns: 1.6fr 1fr; }
+.mosaic.n3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; } .mosaic.n3 img:first-child { grid-row: span 2; }
+.mosaic.n4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.mosaic.n5 { grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 1fr 1fr; } .mosaic.n5 img:first-child { grid-row: span 2; }
+.mosaic.n6 { grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; }
+.mosaic.n7 { grid-template-columns: 1.3fr 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; } .mosaic.n7 img:first-child { grid-row: span 2; }
+#board.kind-mosaicbox .bd-screen { grid-template-rows: minmax(0, 1fr) auto; }
+#zoom-img { position: fixed; inset: 0; z-index: 30; background: rgba(15,6,12,.88); display: grid; place-items: center; cursor: zoom-out; }
+#zoom-img img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+/* Keahlian & Kompetensi: papan berbeda */
+#board.kind-skills .bd-screen { background: radial-gradient(120% 120% at 50% 0%, #2a1b33, #120a14); grid-template-rows: 1fr; height: min(60vh, 500px); }
+#board.kind-skills .bd-media { display: none; }
+#board.kind-skills .bd-text { max-height: 100%; max-width: none; width: 100%; align-self: stretch; }
+.skillgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: left; }
+.skillgrid .sk { background: rgba(255,255,255,.05); border: 1.5px solid rgba(201,179,224,.28); border-radius: 12px; padding: 9px 11px; }
+.skillgrid .sk b { display: flex; align-items: center; gap: 8px; color: #e9d8ff; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.skillgrid .sk b i { font-style: normal; font-size: 20px; }
+.skillgrid .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.skillgrid .chips span { font-size: 11.5px; padding: 1px 8px; border-radius: 20px; background: rgba(241,180,52,.14); color: #ffe2a8; border: 1px solid rgba(241,180,52,.35); line-height: 1.6; }
+/* Membaca tulisan blog: satu kolom, gambar ikut tergulir bersama tulisan */
+#board.reading .bd-screen { grid-template-columns: 1fr; }
+#board.reading .bd-media { display: none; }
+#board.reading .bd-text { max-width: 720px; width: 100%; justify-self: center; padding: 0 14px; }
+#board.reading .bd-text img { display: block; margin: 10px auto; max-height: 340px; box-shadow: 0 10px 26px rgba(0,0,0,.45); }
+/* Daftar blog Kantin & Terminal */
+#board.bloglist .bd-screen { grid-template-columns: 1fr; }
+#board.bloglist .bd-media { display: none; }
+#board.bloglist .bd-text { padding: 0 6px; }
+.bl-head { display: flex; align-items: center; gap: 14px; padding: 4px 4px 14px; border-bottom: 1px dashed rgba(255,214,168,.3); margin-bottom: 14px; }
+.bl-head i { font-style: normal; font-size: 40px; width: 64px; height: 64px; flex: none; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,214,168,.25), rgba(255,214,168,.04)); }
+.bl-head p { margin: 0; color: #f0dde6; font-size: 15px; }
+.bd-text .postgrid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+.bd-text .postgrid .card { padding: 0 0 12px; overflow: hidden; }
+.bd-text .postgrid .card:hover { transform: translateY(-4px); }
+.bd-text .postgrid .card .pc { display: grid; place-items: center; height: 110px; margin-bottom: 10px; font-size: 44px; background: #2c2030 center / cover no-repeat;
+  border-bottom: 2px solid rgba(255,255,255,.08); }
+.bd-text .postgrid .card b, .bd-text .postgrid .card small { padding: 0 12px; }
+.bd-text .postgrid .card { color: #e6d6df; font-size: 13.5px; }
+.bd-text .postgrid .card .ps { display: block; padding: 2px 12px 4px; }
+/* Bengkel Cat: pelangi warna bebas */
+.rainbow { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; gap: 8px 14px; align-items: center; margin: 10px 0 16px;
+  background: rgba(255,255,255,.05); border-radius: 14px; padding: 12px; }
+.rainbow .rb-prev { grid-row: span 2; width: 64px; height: 64px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 6px 16px rgba(0,0,0,.4); }
+.rainbow label { display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 8px; font-size: 13px; color: #e6d6df; }
+.rainbow input[type=range] { -webkit-appearance: none; appearance: none; height: 16px; border-radius: 10px; outline: none; cursor: pointer;
+  background: linear-gradient(90deg, #ff3b3b, #ff9f1c, #ffe14d, #4cd964, #2ec4f1, #3b5bff, #a64dff, #ff4dc4, #ff3b3b); }
+.rainbow input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 3px solid #241726; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+.rainbow input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid #241726; }
+#board.paintbox .bd-screen { grid-template-columns: 1fr; }
+#board.paintbox .bd-media { display: none; }
+#board.paintbox .bd-text { max-width: 640px; width: 100%; justify-self: center; }
+#board.paintbox .bd-text .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 10px 6px; }
+#board.paintbox .bd-text .swatch { color: #e6d6df; font-size: 11px; text-align: center; }
+#board.paintbox .bd-text .swatch i { width: 38px; height: 38px; }
 #board.photo .bd-text { display: none; }
 .bd-nav { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 14px; }
 .bd-nav button { width: 64px; height: 44px; border: 0; border-radius: 6px; background: #e0567f; color: #fff; font-size: 26px; cursor: pointer;
@@ -231,6 +330,12 @@ body:not(.night) #btn-daynight .moon { display: none; }
   .bd-frame { width: 92vw; }
   .bd-screen { grid-template-columns: 1fr; height: 56vh; }
   .bd-media { max-height: 22vh; }
+  #board.center .bd-screen { gap: 12px; padding: 16px; }
+  #board.center .bd-media { max-height: none; }
+  #board.center .bd-text { max-height: 11em; font-size: 14.5px; }
+  .skillgrid { grid-template-columns: 1fr; }
+  #board.center.kind-side .bd-screen { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; text-align: center; }
+  #board.center.kind-side .bd-text { max-height: 11em; }
   .bd-post { display: none; }
 }
 .bd-text table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 14px; }

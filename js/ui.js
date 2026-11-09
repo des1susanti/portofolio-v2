@@ -60,7 +60,7 @@ export function updateLabels(camera, anchors, robotPos, hide) {
 // ------------------------------------------------------------------ edit teks (✎)
 let edits = {};
 export async function loadEdits() { edits = await admin.loadEdits(true); }
-const editKey = (i) => `${board.key}:${i}`;
+const editKey = (i) => `${board.key}:${(board.slides && board.slides[i] && board.slides[i]._i != null) ? board.slides[i]._i : i}`;
 function edited(i, field, fallback) {
   const e = edits[editKey(i)] && edits[editKey(i)][lang];
   return e && e[field] != null ? e[field] : fallback;
@@ -74,11 +74,33 @@ export function setPaintHandler(fn, hex) { onPaint = fn; paintNow = hex; }
 
 async function loadPosts() { return admin.loadPosts(); }
 
+// Papan yang tampil di tengah (gambar di atas, tulisan di bawah)
+const CENTER = new Set(['galeri', 'lab', 'auditorium', 'masjid', 'kelas', 'prestasi', 'siger', 'taman']);
+// Foto-foto berurutan digabung menjadi satu papan kolase:
+//  - prestasi: foto ikut papan prestasinya (judul + tulisan + kolase)
+//  - auditorium: semua foto wisuda jadi satu papan "Wisuda"
+function groupPhotos(key, slides) {
+  if (key !== 'prestasi' && key !== 'auditorium') return slides.map((s, i) => ({ ...s, _i: i }));
+  const out = [];
+  slides.forEach((s, i) => {
+    if (!s.photo) { out.push({ ...s, _i: i, photos: key === 'prestasi' && s.img ? [s.img] : null }); return; }
+    let last = out[out.length - 1];
+    if (key === 'auditorium' && !(last && last._wisuda)) {
+      last = { title: { id: 'Wisuda', en: 'Graduation' }, _i: i, _wisuda: true, photos: [], photo: false,
+        text: { id: '<p>Wisuda Magister Teknik Informatika, IIB Darmajaya · Desember 2024.</p>', en: '<p>Master of Informatics Engineering graduation, IIB Darmajaya · December 2024.</p>' } };
+      out.push(last);
+    }
+    (last.photos = last.photos || []).push(s.img);
+  });
+  return out;
+}
+const mosaic = (imgs) => `<div class="mosaic n${Math.min(imgs.length, 7)}">${imgs.map((src) => `<img src="${src}" alt="">`).join('')}</div>`;
+
 /** buka papan untuk lokasi; onExit dipanggil saat tombol KELUAR / Esc */
 export async function openBoard(loc, onExit) {
   board.loc = loc; board.key = loc.key; board.i = 0; board.onExit = onExit; board.editing = false; board.post = null;
   board.mode = loc.blog ? 'blog' : loc.contact ? 'contact' : loc.paint ? 'paint' : loc.books ? 'books' : 'slides';
-  board.slides = loc.slides || [];
+  board.slides = groupPhotos(loc.key, loc.slides || []);
   if (loc.blog) {
     board.posts = (await loadPosts()).filter((p) => p.cat === loc.blog).sort((a, b) => (a.date < b.date ? 1 : -1));
   }
@@ -127,6 +149,11 @@ function renderBoard() {
   link.classList.add('hidden');
   $('#board').classList.toggle('photo', false);
   $('#board').classList.toggle('editable', board.mode === 'slides' && admin.isOwner());
+  $('#board').classList.toggle('center', board.mode === 'slides' && CENTER.has(board.key));
+  $('#board').classList.toggle('reading', false);
+  $('#board').classList.toggle('bloglist', board.mode === 'blog' && L.blog !== 'kode');
+  $('#board').classList.toggle('paintbox', board.mode === 'paint');
+  ['skills', 'quote', 'mosaicbox', 'iconic', 'side'].forEach((c) => $('#board').classList.remove('kind-' + c));
   const n = slideCount();
   dots.innerHTML = n > 1 ? Array.from({ length: Math.min(n, 12) }, (_, k) => `<i class="${k === board.i % 12 ? 'on' : ''}"></i>`).join('') : '';
   $('#board .bd-nav').classList.toggle('hidden', n < 2 && !(board.mode === 'blog' && board.post));
@@ -135,9 +162,18 @@ function renderBoard() {
     const s = board.slides[board.i];
     title.innerHTML = edited(board.i, 'title', t(s.title));
     if (s.link) { link.textContent = s.link.label; link.href = s.link.url; link.classList.remove('hidden'); }
-    if (s.img) media.innerHTML = `<img src="${s.img}" alt="">`;
-    else if (s.icon) media.innerHTML = `<div class="bd-icon">${s.icon}</div>`;
+    if (s.photos && s.photos.length) { media.innerHTML = mosaic(s.photos); $('#board').classList.add('kind-mosaicbox'); }
+    else if (s.img) media.innerHTML = `<img src="${s.img}" alt="">`;
+    else if (s.icon) { media.innerHTML = `<div class="bd-icon">${s.icon}</div>`; $('#board').classList.add('kind-iconic'); }
     text.innerHTML = edited(board.i, 'text', t(s.text));
+    if (s.kind === 'skills' && s.skills && !(edits[editKey(board.i)] && edits[editKey(board.i)][lang])) {
+      $('#board').classList.add('kind-skills');
+      media.innerHTML = '';
+      text.innerHTML = `<div class="skillgrid">${s.skills.map((g) => `<div class="sk"><b><i>${g.e}</i>${t(g.k)}</b><div class="chips">${g.items.map((x) => `<span>${x}</span>`).join('')}</div></div>`).join('')}</div>`;
+    }
+    if (s.layout === 'side') $('#board').classList.add('kind-side');
+    if (/blockquote class="big"/.test(text.innerHTML)) $('#board').classList.add('kind-quote');
+    if (s.links) text.innerHTML += `<div class="linkrow">${s.links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.icon || '🔗'} ${l.label}</a>`).join('')}</div>`;
     $('#board').classList.toggle('photo', !!s.photo);
     if (s.meta) meta.innerHTML = s.meta.map((m) => `<div class="sign"><span class="sign-k">${t(m.k)}</span><span class="sign-v">${t(m.v)}</span></div>`).join('');
     if (s.badge) { badge.textContent = s.badge; badge.classList.remove('hidden'); }
@@ -149,25 +185,46 @@ function renderBoard() {
   } else if (board.mode === 'paint') {
     title.textContent = t(UI.paint);
     media.innerHTML = '<div class="bd-icon">🎨</div>';
-    text.innerHTML = `<p>${t(UI.paintIntro)}</p><div class="swatches">` + COLORS.map((c) =>
-      `<button class="swatch ${c.hex === paintNow ? 'on' : ''}" data-hex="${c.hex}"><i style="background:${c.hex}"></i>${t(c.name)}</button>`).join('') + '</div>';
+    const hsl = (hex) => { const c = new THREE.Color(hex), o = {}; c.getHSL(o); return o; };
+    const sorted = [...COLORS].sort((a, b) => { const A = hsl(a.hex), B = hsl(b.hex), ga = A.s < 0.15, gb = B.s < 0.15;
+      return ga !== gb ? (ga ? 1 : -1) : ga ? B.l - A.l : A.h - B.h || B.l - A.l; });
+    const cur = hsl(paintNow);
+    text.innerHTML = `<p>${t(UI.paintIntro)}</p>
+      <div class="rainbow"><div class="rb-prev" style="background:${paintNow}"></div>
+        <label><span>${t({ id: 'Warna', en: 'Hue' })}</span><input type="range" class="rb-h" min="0" max="360" value="${Math.round(cur.h * 360)}"></label>
+        <label><span>${t({ id: 'Terang', en: 'Light' })}</span><input type="range" class="rb-l" min="15" max="85" value="${Math.round(Math.min(85, Math.max(15, cur.l * 100)))}"></label></div>
+      <div class="swatches">` + sorted.map((c) =>
+      `<button class="swatch ${c.hex === paintNow ? 'on' : ''}" data-hex="${c.hex}" title="${t(c.name)}"><i style="background:${c.hex}"></i>${t(c.name)}</button>`).join('') + '</div>';
+    const setPaint = (hex) => { paintNow = hex; text.querySelector('.rb-prev').style.background = hex; onPaint && onPaint(paintNow); };
     text.querySelectorAll('.swatch').forEach((b) => b.addEventListener('click', () => {
-      paintNow = b.dataset.hex;
+      setPaint(b.dataset.hex);
       text.querySelectorAll('.swatch').forEach((x) => x.classList.toggle('on', x === b));
-      onPaint && onPaint(paintNow);
       sfx.pop();
     }));
+    const h = text.querySelector('.rb-h'), l = text.querySelector('.rb-l');
+    const fromSliders = () => {
+      const hex = '#' + new THREE.Color().setHSL(h.value / 360, 0.75, l.value / 100).getHexString();
+      l.style.background = `linear-gradient(90deg, hsl(${h.value} 75% 15%), hsl(${h.value} 75% 50%), hsl(${h.value} 75% 85%))`;
+      text.querySelectorAll('.swatch').forEach((x) => x.classList.remove('on'));
+      setPaint(hex);
+    };
+    l.style.background = `linear-gradient(90deg, hsl(${h.value} 75% 15%), hsl(${h.value} 75% 50%), hsl(${h.value} 75% 85%))`;
+    [h, l].forEach((r) => { r.addEventListener('input', fromSliders); r.addEventListener('keydown', (e) => e.stopPropagation()); });
   } else if (board.mode === 'books') {
     renderBooks(title, media, text);
   } else if (board.mode === 'blog') {
     if (board.post) return; // sedang membaca, isi diatur readPost
     title.textContent = t(L.title);
-    media.innerHTML = L.blog === 'kode' ? '<img src="img/blog-kode.jpg" alt="">'
-      : `<div class="bd-icon">${{ kode: '💻', kuliner: '🍜', 'jalan-jalan': '🧳' }[L.blog] || '📝'}</div>`;
+    const emo = { kode: '💻', kuliner: '🍜', 'jalan-jalan': '🧳' }[L.blog] || '📝';
+    const fancy = L.blog !== 'kode';
+    media.innerHTML = L.blog === 'kode' ? '<img src="img/blog-kode.jpg" alt="">' : fancy ? '' : `<div class="bd-icon">${emo}</div>`;
     const list = board.posts;
     const own = admin.isOwner();
-    text.innerHTML = (list.length ? '<div class="cards">' + list.map((p, k) =>
-      `<div class="card" data-k="${k}"><b>${t(p.title)}${p.draft ? ' <em class="draft">draf</em>' : ''}</b>${t(p.summary || '')}<small>${p.date}</small>` +
+    const intro = fancy ? `<div class="bl-head"><i>${emo}</i><p>${t(L.blog === 'kuliner'
+      ? { id: 'Cerita rasa dan tempat makan favorit, dari Lampung dan sekitarnya.', en: 'Stories of flavours and favourite places to eat, from Lampung and beyond.' }
+      : { id: 'Catatan perjalanan dan tempat-tempat yang pernah saya kunjungi.', en: 'Travel notes and places I have visited.' })}</p></div>` : '';
+    text.innerHTML = intro + (list.length ? `<div class="cards${fancy ? ' postgrid' : ''}">` + list.map((p, k) =>
+      `<div class="card" data-k="${k}">${fancy ? `<span class="pc" style="${p.cover ? `background-image:url('${p.cover}')` : ''}">${p.cover ? '' : emo}</span>` : ''}<b>${t(p.title)}${p.draft ? ' <em class="draft">draf</em>' : ''}</b>${fancy ? `<span class="ps">${t(p.summary || '')}</span>` : t(p.summary || '')}<small>${p.date}</small>` +
       (own ? `<span class="own-tools"><a href="tulis.html?edit=${encodeURIComponent(p.file)}" target="_blank" data-stop>✎ Edit</a><a href="#" class="del" data-del="${k}">🗑 Hapus</a></span>` : '') +
       '</div>').join('') + '</div>' : `<p>${t(UI.noPosts)}</p>`) +
       (own ? `<p><a class="write-btn" href="tulis.html?cat=${L.blog}" target="_blank">✍️ ${t(UI.write)}</a></p>` : '');
@@ -244,12 +301,15 @@ async function readPost(p) {
   board.post = p;
   const text = $('#board .bd-text');
   $('#board .bd-title').textContent = t(p.title);
-  $('#board .bd-media').innerHTML = p.cover ? `<img src="${p.cover}" alt="">` : '';
+  $('#board .bd-media').innerHTML = '';
+  $('#board').classList.add('reading');
+  $('#board').classList.remove('bloglist');
   $('#board .bd-nav').classList.toggle('hidden', board.posts.length < 2);
   text.innerHTML = '…';
   const file = typeof p.file === 'string' ? p.file : (p.file[lang] || p.file.id);
   const src = (await admin.readText(`posts/${file}`)) || '(gagal memuat tulisan)';
-  text.innerHTML = `<p><a href="#" class="back">${t(UI.back)}</a> <span class="muted">· ${p.date}</span></p>` + md(src);
+  const cover = p.cover && !src.includes(p.cover) ? `<p><img src="${p.cover}" alt=""></p>` : '';
+  text.innerHTML = `<p><a href="#" class="back">${t(UI.back)}</a> <span class="muted">· ${p.date}</span></p>` + cover + md(src);
   text.querySelector('.back').addEventListener('click', (e) => { e.preventDefault(); board.post = null; renderBoard(); });
   text.scrollTop = 0;
 }
@@ -289,6 +349,14 @@ export function setupBoard() {
   $('#board .bd-edit').addEventListener('click', () => startEdit());
   $('#board .bd-save').addEventListener('click', () => endEdit(true));
   $('#board .bd-cancel').addEventListener('click', () => endEdit(false));
+  $('#board .bd-media').addEventListener('click', (e) => {
+    const im = e.target.closest('.mosaic img');
+    if (!im) return;
+    const z = document.createElement('div');
+    z.id = 'zoom-img'; z.innerHTML = `<img src="${im.getAttribute('src')}" alt="">`;
+    z.addEventListener('click', () => z.remove());
+    document.body.appendChild(z);
+  });
 }
 export const isEditing = () => board.editing;
 
